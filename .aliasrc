@@ -1,0 +1,3 @@
+alias copy="cp"
+alias cls="clear"
+alias wget="wget -c"
