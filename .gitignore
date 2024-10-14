@@ -1,0 +1,14 @@
+# OS Generated files
+.Trashes
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.Spotlight-V100
+
+# Compiler/Interpreter generated files
+*.o
+*.pyc
+*.rmeta
+CMakeCache.txt
+**/__pycache__/**
