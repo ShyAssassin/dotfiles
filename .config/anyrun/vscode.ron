@@ -1,0 +1,8 @@
+Config(
+    prefix: "",
+    max_entries: 3,
+    command: "code",
+    show_empty: false,
+    path: "~/.config/Code",
+    icon: "com.visualstudio.code",
+)

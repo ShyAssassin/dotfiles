@@ -1,0 +1,5 @@
+Config(
+    max_entries: 5,
+    desktop_actions: false,
+    terminal: Some("kitty"),
+)

@@ -1,0 +1,4 @@
+Config(
+    shell: None,
+    prefix: "exec",
+)
