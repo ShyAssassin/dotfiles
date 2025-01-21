@@ -1,0 +1,10 @@
+configuration {
+    show-icons: true;
+	modi: "drun,vscode-recent";
+	drun-display-format: "{name}";
+	window-format: "{w} | {c} | {t}";
+}
+
+window {
+	location: center;
+}

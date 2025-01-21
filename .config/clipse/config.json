@@ -1,0 +1,38 @@
+{
+    "maxHistory": 250,
+    "allowDuplicates": false,
+    "logFile": "/tmp/clipse.log",
+    "tempDir": "/var/tmp/clipse/",
+    "historyFile": "cliphist.json",
+    "themeFile": "~/.config/clipse/theme.json",
+    "keyBindings": {
+        "up": "up",
+        "down": "down",
+        "prevPage": "left",
+        "nextPage": "right",
+
+        "more": "?",
+        "filter": "/",
+        "preview": " ",
+        "choose": "enter",
+
+        "quit": "q",
+        "remove": "x",
+
+        "clearSelected": "S",
+        "end": "end",
+        "home": "home",
+        "selectDown": "ctrl+down",
+        "selectSingle": "s",
+        "selectUp": "ctrl+up",
+        "togglePin": "p",
+        "togglePinned": "tab",
+        "yankFilter": "ctrl+s"
+    },
+    "imageDisplay": {
+        "type": "kitty",
+        "scaleX": 14,
+        "scaleY": 16,
+        "heightCut": 24
+    }
+}
