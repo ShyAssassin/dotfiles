@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration and dotfiles";
+  description = "NixOS configurations and dotfiles";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -11,13 +11,13 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
         modules = [
+          ./nixos/miyabi.nix
+          ./nixos/miyabi-hw.nix
+
           ./nixos/modules/grub.nix
           ./nixos/modules/nvidia.nix
           ./nixos/modules/storage.nix
           ./nixos/modules/syncthing.nix
-
-          ./nixos/configuration.nix
-          ./nixos/hardware-configuration.nix
         ];
       };
     };

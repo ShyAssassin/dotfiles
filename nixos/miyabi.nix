@@ -1,18 +1,14 @@
 {config, lib, pkgs, ...}: {
-  nixpkgs.config.allowUnfree = true;
-
   networking.hostName = "miyabi";
-
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
+  nixpkgs.config.allowUnfree = true;
   time.timeZone = "Africa/Johannesburg";
+  networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
-  #   font = "Lat2-Terminus16";
   #   keyMap = "us";
+  #   font = "Lat2-Terminus16";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
@@ -41,14 +37,16 @@
   # services.libinput.enable = true;
   programs.steam.enable = true;
   users.users.assassin = {
+    createHome = true;
     isNormalUser = true;
     description = "[Assassin]";
     extraGroups = ["wheel" "networkmanager"];
     packages = with pkgs; [
       github-desktop
-      mangohud
+      spotify
       vesktop
       vscode
+      miru
     ];
   };
 
@@ -57,7 +55,8 @@
       Restart = "always";
       ExecStart = lib.getExe pkgs.arrpc;
     };
-    wantedBy = ["default.target"];
+    partOf = ["graphical-session.target"];
+    wantedBy = ["graphical-session.target"];
   };
 
   programs.firefox.enable = true;
@@ -68,7 +67,6 @@
     git
     btop
     neovim
-    rustup
     neofetch
   ];
 

@@ -1,5 +1,5 @@
 {config, lib, pkgs, modulesPath, ...}: {
-  imports =[ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports =[(modulesPath + "/installer/scan/not-detected.nix")];
 
   networking.useDHCP = lib.mkDefault true;
   swapDevices = [ { device = "/swap/swapfile"; } ];
@@ -8,8 +8,8 @@
 
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
 
   fileSystems."/boot" = {
     fsType = "vfat";

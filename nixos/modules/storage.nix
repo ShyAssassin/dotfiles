@@ -7,8 +7,8 @@
 
   services.btrfs.autoScrub = {
     enable = true;
-    interval = "weekly";
-    fileSystems = [ "/" ];
+    fileSystems = ["/"];
+    interval = "monthly";
   };
 
   nix.settings.auto-optimise-store = true;
