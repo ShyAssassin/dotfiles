@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 unset XDG_SESSION_TYPE
 unset XDG_CURRENT_DESKTOP

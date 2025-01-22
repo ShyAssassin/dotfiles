@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 format=png
 path="$HOME/Pictures/Screenshots"
