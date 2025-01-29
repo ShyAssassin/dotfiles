@@ -3,13 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = {self, nixpkgs, ...} @ inputs: let inherit (self) outputs; in {
+  outputs = inputs@{self, nixpkgs, nix-darwin, nixpkgs-darwin}: {
     nixosConfigurations = {
       miyabi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./nixos/miyabi.nix
           ./nixos/miyabi-hw.nix
@@ -19,6 +23,15 @@
           ./nixos/modules/nvidia.nix
           ./nixos/modules/storage.nix
           ./nixos/modules/syncthing.nix
+        ];
+      };
+    };
+    darwinConfigurations = {
+      senko = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./nixos/senko.nix
         ];
       };
     };
