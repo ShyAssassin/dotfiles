@@ -13,4 +13,8 @@ if [[ $flag == *"--upgrade"* ]]; then
   exe sudo nix flake update
 fi
 
-exe sudo nixos-rebuild switch $flag --flake .#$host
+if [[ "$(uname)" == "Darwin" ]]; then
+  exe sudo nix run nix-darwin -- switch $flag --flake .#$host
+else
+  exe sudo nixos-rebuild switch $flag --flake .#$host
+fi
