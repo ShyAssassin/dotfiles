@@ -1,8 +1,8 @@
 {config, lib, pkgs, ...}: {
   nix.gc = {
+    dates = "daily";
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 15d";
+    options = "--delete-older-than 7d";
   };
 
   services.btrfs.autoScrub = {
