@@ -2,7 +2,7 @@
   services.syncthing = {
     enable = true;
     user = "assassin";
-    # group = "assassin";
+    group = "syncthing";
     openDefaultPorts = true;
     dataDir = "/home/assassin/Documents";
     configDir = "/home/assassin/.config/syncthing";
