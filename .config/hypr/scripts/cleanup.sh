@@ -6,7 +6,7 @@ unset XDG_SESSION_DESKTOP
 unset QT_QPA_PLATFORMTHEME
 unset WLR_NO_HARDWARE_CURSORS
 
-killall -e hypridle & sleep 1
-killall -e xdg-desktop-portal & sleep 1
-killall -e xdg-desktop-portal-gtk & sleep 1
-killall -e xdg-desktop-portal-hyprland & sleep 1
+killall hypridle & sleep 1
+killall xdg-desktop-portal & sleep 1
+killall xdg-desktop-portal-gtk & sleep 1
+killall xdg-desktop-portal-hyprland & sleep 1
