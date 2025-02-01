@@ -12,7 +12,9 @@
     "modules-center": [
         "hyprland/window"
     ],
-    "modules-right": [],
+    "modules-right": [
+        "tray"
+    ],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -54,5 +56,9 @@
         "actions": {
             "on-click-right": "mode"
         }
+    },
+    "tray": {
+        "spacing": 6,
+        "icon-size": 20
     }
 }
