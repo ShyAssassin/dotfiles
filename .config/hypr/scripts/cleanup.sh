@@ -10,3 +10,4 @@ killall hypridle & sleep 1
 killall xdg-desktop-portal & sleep 1
 killall xdg-desktop-portal-gtk & sleep 1
 killall xdg-desktop-portal-hyprland & sleep 1
+systemctl --user stop hyprpolkitagent & sleep 1
