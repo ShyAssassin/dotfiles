@@ -9,6 +9,7 @@
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = ["kvm-amd"];
+  boot.supportedFilesystems = ["ntfs"];
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
 
   fileSystems."/boot" = {
@@ -52,5 +53,11 @@
     fsType = "btrfs";
     options = ["subvol=@swap" "noatime"];
     device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+  };
+
+  fileSystems."/mnt/Games" = {
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000"];
+    device = "/dev/disk/by-uuid/DA3C5AC23C5A98F9";
   };
 }
