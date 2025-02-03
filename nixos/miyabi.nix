@@ -13,7 +13,7 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
@@ -35,18 +35,25 @@
   # services.arrpc.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+
   users.users.assassin = {
     createHome = true;
     isNormalUser = true;
     description = "[Assassin]";
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "libvirtd"];
     packages = with pkgs; [
       github-desktop
-      spotify
       vesktop
+      spotify
       vscode
       miru
+      vlc
     ];
   };
 
