@@ -24,8 +24,11 @@ in {
     font-awesome
   ];
 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.Hyprland.enableGnomeKeyring = true;
   environment.systemPackages = with pkgs; [
     waybar
+    playerctl
     grim slurp
     kitty anyrun
     dunst libnotify
