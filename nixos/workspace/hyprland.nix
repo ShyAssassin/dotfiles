@@ -24,8 +24,9 @@ in {
     font-awesome
   ];
 
+  programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.Hyprland.enableGnomeKeyring = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
   environment.systemPackages = with pkgs; [
     waybar
     playerctl
