@@ -1,0 +1,6 @@
+* text=auto
+
+*.{sh,[sS][hH]} text eol=lf
+*.{ps1,[pP][sS]1} text eol=crlf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf

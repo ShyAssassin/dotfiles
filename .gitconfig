@@ -6,7 +6,8 @@
     eol = lf
     autocrlf = false
     editor = code --wait
-    attributesfile = ~/.gitattributes_global
+    excludesFile = ~/.gitignore
+    attributesfile = ~/.gitattributes
 [color]
     ui = auto
     status = auto
