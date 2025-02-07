@@ -1,3 +1,4 @@
 alias copy="cp"
+alias cwd="pwd"
 alias cls="clear"
 alias wget="wget -c"
