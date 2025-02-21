@@ -11,8 +11,9 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    # v0.47.2 does not compile under nixos right now
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.47.1";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
   };
@@ -23,15 +24,19 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./nixos/miyabi.nix
-          ./nixos/miyabi-hw.nix
+          ./nixos/hosts/miyabi.nix
+          ./nixos/hosts/miyabi-hw.nix
+
+          ./nixos/apps/nautilus.nix
+          ./nixos/apps/syncthing.nix
+          ./nixos/workspace/hyprland.nix
 
           ./nixos/modules/dev.nix
           ./nixos/modules/grub.nix
           ./nixos/modules/nvidia.nix
+          ./nixos/modules/secrets.nix
           ./nixos/modules/storage.nix
-          ./nixos/modules/syncthing.nix
-          ./nixos/workspace/hyprland.nix
+          ./nixos/modules/virtualization.nix
         ];
       };
     };
@@ -40,7 +45,7 @@
         system = "aarch64-darwin";
         specialArgs = {inherit inputs;};
         modules = [
-          ./nixos/senko.nix
+          ./nixos/hosts/senko.nix
         ];
       };
     };
