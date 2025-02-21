@@ -24,17 +24,12 @@ in {
     font-awesome
   ];
 
-  programs.seahorse.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
   environment.systemPackages = with pkgs; [
-    waybar
-    playerctl
     grim slurp
-    kitty anyrun
-    dunst libnotify
+    adwaita-icon-theme
     clipse wl-clipboard
-    hyprpaper hypridle hyprlock
-    killall hyprpolkitagent xorg.xrandr
+    waybar dunst anyrun kitty
+    killall xorg.xrandr libnotify playerctl
+    hyprpaper hypridle hyprlock hyprpolkitagent hyprpicker
   ];
 }
