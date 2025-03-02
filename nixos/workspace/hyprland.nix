@@ -24,12 +24,24 @@ in {
     font-awesome
   ];
 
+  # Secrets and keys management
+  programs.seahorse.enable = true; # cringe
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.ly.enableGnomeKeyring = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
+  # needed for nautilus stuff
+  services.gvfs.enable = true;
+  programs.dconf.enable = true;
+  services.gnome.sushi.enable = true;
+
   environment.systemPackages = with pkgs; [
     grim slurp
     adwaita-icon-theme
     clipse wl-clipboard
-    waybar dunst anyrun kitty
+    waybar dunst anyrun kitty nautilus
     killall xorg.xrandr libnotify playerctl
-    hyprpaper hypridle hyprlock hyprpolkitagent hyprpicker
+    hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
   ];
 }

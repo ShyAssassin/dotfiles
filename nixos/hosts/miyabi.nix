@@ -61,10 +61,8 @@
     packages = with pkgs; [
       mangohud
       vesktop
-      spotify
       bottles
       miru
-      wine
       vlc
     ];
   };
