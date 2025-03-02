@@ -26,8 +26,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./nixos/hosts/miyabi.nix
-          ./nixos/hosts/miyabi-hw.nix
+          ./nixos/hosts/miyabi/miyabi.nix
+          ./nixos/hosts/miyabi/miyabi-hw.nix
 
           ./nixos/workspace/dev.nix
           ./nixos/workspace/gaming.nix
@@ -40,6 +40,21 @@
           ./nixos/modules/storage.nix
           ./nixos/modules/syncthing.nix
           ./nixos/modules/virtualization.nix
+        ];
+      };
+      yukime = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./nixos/hosts/yukime/yukime.nix
+          ./nixos/hosts/yukime/yukime-hw.nix
+
+          ./nixos/services/adguard.nix
+
+          ./nixos/modules/dev.nix
+          ./nixos/modules/grub.nix
+          ./nixos/modules/nvidia.nix
+          ./nixos/modules/storage.nix
         ];
       };
     };
