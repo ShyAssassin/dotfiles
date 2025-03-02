@@ -57,7 +57,7 @@
     createHome = true;
     isNormalUser = true;
     description = "[Assassin]";
-    extraGroups = ["wheel" "networkmanager" "libvirtd"];
+    extraGroups = ["wheel" "networkmanager" "libvirtd" "gamemode"];
     packages = with pkgs; [
       mangohud
       vesktop
