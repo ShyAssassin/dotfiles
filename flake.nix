@@ -47,11 +47,12 @@
         modules = [
           ./nixos/hosts/yukime/yukime.nix
           ./nixos/hosts/yukime/yukime-hw.nix
-
-          ./nixos/workspace/dev.nix
-          ./nixos/services/adguard.nix
+          ./nixos/hosts/yukime/services/nginx.nix
+          ./nixos/hosts/yukime/services/wakapi.nix
+          ./nixos/hosts/yukime/services/adguard.nix
 
           ./nixos/modules/grub.nix
+          ./nixos/workspace/dev.nix
           ./nixos/modules/nvidia.nix
           ./nixos/modules/storage.nix
         ];
