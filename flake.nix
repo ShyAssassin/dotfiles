@@ -33,7 +33,6 @@
           ./nixos/workspace/gaming.nix
           ./nixos/workspace/hyprland.nix
 
-          ./nixos/modules/dev.nix
           ./nixos/modules/grub.nix
           ./nixos/modules/nvidia.nix
           ./nixos/modules/spotify.nix
@@ -49,9 +48,9 @@
           ./nixos/hosts/yukime/yukime.nix
           ./nixos/hosts/yukime/yukime-hw.nix
 
+          ./nixos/workspace/dev.nix
           ./nixos/services/adguard.nix
 
-          ./nixos/modules/dev.nix
           ./nixos/modules/grub.nix
           ./nixos/modules/nvidia.nix
           ./nixos/modules/storage.nix

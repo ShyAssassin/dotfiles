@@ -1,5 +1,14 @@
 {config, lib, pkgs, ...}: {
-  programs.direnv.enable = true;
+  programs.nix-ld.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    loadInNixShell = true;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
+    enableBashIntegration = true;
+  };
+
   environment.systemPackages = with pkgs; [
     renderdoc
     vscode imhex
