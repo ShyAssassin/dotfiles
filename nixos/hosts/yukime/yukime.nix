@@ -25,18 +25,14 @@
 
   users.users.assassin = {
     isNormalUser = true;
+    packages = with pkgs; [];
     extraGroups = ["wheel" "networkmanager"];
-    packages = with pkgs; [
-      gh
-      lazygit
-    ];
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+kNski6X9Vot6gej9aNj0b+CCyjC19gCAQGOGOvsc8"];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git
     vim
     neovim
   ];
