@@ -25,16 +25,26 @@
 
   users.users.assassin = {
     isNormalUser = true;
+    extraGroups = ["wheel"];
     packages = with pkgs; [];
-    extraGroups = ["wheel" "networkmanager"];
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+kNski6X9Vot6gej9aNj0b+CCyjC19gCAQGOGOvsc8"];
   };
 
   users.users.durpy = {
+    extraGroups = [];
     isNormalUser = true;
-    extraGroups = ["wheel"];
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHWjNu6Blw8q7dto9tCEVebroFJ0MLRvr0NVFPLzoevS"];
+  };
+
+  users.users.kitty = {
+    extraGroups = [];
+    isNormalUser = true;
+    packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2UFubyRdz4RB4t36hVW9cOXbO7OFfZCrpeKWVc+MJP"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZEUV4P2SLD2YCJ0p4rCcsJ4MhHYjUMK9GFwvwvTrn"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
