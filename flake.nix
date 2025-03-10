@@ -55,6 +55,7 @@
           ./nixos/workspace/dev.nix
           ./nixos/modules/nvidia.nix
           ./nixos/modules/storage.nix
+          ./nixos/modules/syncthing.nix
         ];
       };
     };
