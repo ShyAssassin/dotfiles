@@ -23,7 +23,7 @@
       security = {
         invite_codes = true;
         allow_signup = false;
-        insecure_cookies = true;
+        insecure_cookies = false;
       };
     };
     database.dialect = "sqlite3";
