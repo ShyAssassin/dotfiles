@@ -4,7 +4,7 @@
   networking.hostName = "senko";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin";
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
   system.configurationRevision = inputs.self.rev or null;
   nix.settings.experimental-features = "nix-command flakes";
 
