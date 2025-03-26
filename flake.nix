@@ -13,7 +13,9 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.0";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    # v0.47.2 does not compile under nixos right now
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.47.1";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
   };
