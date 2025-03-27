@@ -11,6 +11,7 @@
     initrd.kernelModules = [ ];
     kernelModules = ["kvm-amd"];
     supportedFilesystems = ["ntfs"];
+    kernelParams = ["amd_iommu=on" "iommu=pt"];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   };
 
