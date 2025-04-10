@@ -3,7 +3,6 @@
 
   inputs = {
     # NixOS
-    spicetify.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.url = "github:Gerg-L/spicetify-nix";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
@@ -13,7 +12,9 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    # v0.48.1 is super buggy right now under nixos
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.47.2-b";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
   };
