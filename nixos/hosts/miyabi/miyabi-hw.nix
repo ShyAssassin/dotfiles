@@ -11,6 +11,7 @@
     initrd.kernelModules = [ ];
     kernelModules = ["kvm-amd"];
     supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_6_12;
     kernelParams = ["amd_iommu=on" "iommu=pt"];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   };
@@ -60,7 +61,7 @@
 
   fileSystems."/mnt/Games" = {
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000"];
+    options = [ "rw" "uid=1000" "nofail" ];
     device = "/dev/disk/by-uuid/DA3C5AC23C5A98F9";
   };
 }
