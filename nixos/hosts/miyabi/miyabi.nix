@@ -1,28 +1,28 @@
 {config, lib, pkgs, ...}: {
-  networking.hostName = "miyabi";
+  services.openssh.enable = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "x86_64-linux";
   time.timeZone = "Africa/Johannesburg";
-  networking.networkmanager.enable = true;
+
+  networking = {
+    hostName = "miyabi";
+    firewall.enable = true;
+    networkmanager.enable = true;
+  };
+
+  services.displayManager.ly.enable = true;
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   keyMap = "us";
-  #   font = "Lat2-Terminus16";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # disable the X11 windowing system.
-  services.xserver.enable = false;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  console = {
+    keyMap = "us";
+    useXkbConfig = true;
+    font = "Lat2-Terminus16";
+  };
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "za";
   services.xserver.xkb.options = "";
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -32,16 +32,6 @@
     alsa.support32Bit = true;
     wireplumber.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-  hardware.steam-hardware.enable = true;
 
   programs.fish.enable = true;
   programs.bash = {
@@ -59,6 +49,7 @@
     description = "[Assassin]";
     extraGroups = ["wheel" "networkmanager" "libvirtd" "gamemode"];
     packages = with pkgs; [
+      yubioath-flutter
       mangohud
       vesktop
       bottles
@@ -67,6 +58,7 @@
     ];
   };
 
+  services.pcscd.enable = true;
   systemd.user.services.arRPC = {
     serviceConfig = {
       Restart = "always";
@@ -93,17 +85,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;s
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
