@@ -6,7 +6,6 @@
     loadInNixShell = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
-    enableBashIntegration = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -14,6 +13,6 @@
     vscode imhex
     gdb lldb tracy
     git gh lazygit github-desktop
-    linuxKernel.packages.linux_6_6.perf
+    config.boot.kernelPackages.perf
   ];
 }
