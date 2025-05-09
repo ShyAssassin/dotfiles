@@ -16,7 +16,8 @@
     # v0.48.1 is super buggy right now under nixos
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.47.2-b";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
-    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
+    # Needs to be pinned to this commit since there were changes in a hyprland header
+    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces?rev=8287ff16cd45b71ac1c2dfd228d1ab949fdf0415";
   };
 
   outputs = inputs@{self, nixpkgs, nix-darwin, nixpkgs-darwin, hyprland, split-monitor-workspaces, spicetify}: {
@@ -25,6 +26,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
+          ./nixos/common.nix
+
           ./nixos/hosts/miyabi/miyabi.nix
           ./nixos/hosts/miyabi/miyabi-hw.nix
 
@@ -44,6 +47,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
+          ./nixos/common.nix
+
           ./nixos/hosts/yukime/yukime.nix
           ./nixos/hosts/yukime/yukime-hw.nix
           ./nixos/hosts/yukime/services/nginx.nix
