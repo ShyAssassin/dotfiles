@@ -34,26 +34,32 @@ if [[ $flag == *"--dry-run"* ]]; then
   dryrun=1
 fi
 
-if [[ $flag == *"--upgrade"* ]]; then
-  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-  exe sudo nix-channel --update
-  exe sudo nix flake update
-fi
-
 if [[ $flag == *"--deploy"* ]]; then
   flag=${flag/--deploy/}
   exe cp --verbose --link --force .aliasrc ~
   exe cp --verbose --link --force .gitconfig ~
   exe cp --verbose --link --force .gitignore ~
   exe cp --verbose --link --force .gitattributes ~
-  exe cp --verbose --recursive --link --force .config/ ~
+  if [ "$host" == "miyabi" ]; then
+    exe cp --verbose --recursive --link --force .config/ ~
+    if [[ ! -f ~/.local/share/icons/default/index.theme ]]; then
+      # Fix for missing cursor in xwayland + electron apps under hyprland
+      exe cp --verbose --recursive /run/current-system/sw/share/icons/phinger-cursors-dark ~/.local/share/icons/default
+    fi
+  fi
 fi
 
+if [[ $flag == *"--upgrade"* ]]; then
+  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+  exe sudo nix-channel --update
+  exe sudo nix flake update
+fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  exe sudo nix run nix-darwin -- switch $flag --flake .#$host
+  exe nix run nix-darwin -- switch $flag --flake .#$host
 elif [[ -f /etc/NIXOS ]]; then
   exe sudo nixos-rebuild switch $flag --flake .#$host
 else
   echo "Unsupported OS please upgrade packages manually"
 fi
+
