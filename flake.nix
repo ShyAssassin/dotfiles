@@ -3,7 +3,9 @@
 
   inputs = {
     # NixOS
+    devnotify.inputs.nixpkgs.follows = "nixpkgs";
     spicetify.url = "github:Gerg-L/spicetify-nix";
+    devnotify.url = "github:ShyAssassin/devnotify";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # NixDarwin
@@ -20,7 +22,7 @@
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces?rev=8287ff16cd45b71ac1c2dfd228d1ab949fdf0415";
   };
 
-  outputs = inputs@{self, nixpkgs, nix-darwin, nixpkgs-darwin, hyprland, split-monitor-workspaces, spicetify}: {
+  outputs = inputs@{self, nixpkgs, nix-darwin, nixpkgs-darwin, hyprland, split-monitor-workspaces, spicetify, devnotify}: {
     nixosConfigurations = {
       miyabi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

@@ -1,5 +1,6 @@
 {config, lib, pkgs, inputs, ...}: let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  devnotify = inputs.devnotify.packages.${pkgs.system}.devnotify;
   xdg-desktop-portal-hyprland = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 in {
@@ -43,11 +44,11 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    grim slurp
     clipse wl-clipboard
     libsForQt5.qt5ct qt6ct
     waybar dunst anyrun kitty nautilus
     gtk-engine-murrine gnome-themes-extra
+    grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl
     libsForQt5.breeze-qt5 kdePackages.breeze
     hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
