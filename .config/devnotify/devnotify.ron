@@ -1,0 +1,7 @@
+(
+    volume: 100,
+    notification: true,
+    connect_sound: "~/.config/devnotify/connect.mp3",
+    notify_message: "Device: ${devnode}",
+    disconnect_sound: "~/.config/devnotify/disconnect.mp3",
+)
