@@ -1,8 +1,9 @@
-{config, lib, pkgs, ...}: {
+{config, lib, pkgs, outputs, ...}: {
   nix.settings = {
     log-lines = "35";
     max-jobs = "auto";
     auto-optimise-store = true;
+    nix-path = config.nix.nixPath;
     experimental-features = "nix-command flakes";
   };
 
@@ -11,4 +12,7 @@
     automatic = true;
     options = "--delete-older-than 7d";
   };
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = lib.attrValues outputs.overlays;
 }
