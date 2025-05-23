@@ -12,5 +12,8 @@
     powerManagement.finegrained = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # Beware of the build times...
+  nixpkgs.config.cudaSupport = true;
   services.xserver.videoDrivers = ["nvidia"];
 }
