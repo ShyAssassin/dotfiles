@@ -56,9 +56,9 @@ if [[ $flag == *"--upgrade"* ]]; then
 fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  exe nix run nix-darwin -- switch $flag --flake .#$host
+  exe nix run nix-darwin -- switch --print-build-logs $flag --flake .#$host
 elif [[ -f /etc/NIXOS ]]; then
-  exe sudo nixos-rebuild switch $flag --flake .#$host
+  exe sudo nixos-rebuild switch --print-build-logs $flag --flake .#$host
 else
   echo "Unsupported OS please upgrade packages manually"
 fi
