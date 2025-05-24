@@ -17,14 +17,6 @@
     devnotify.url = "github:ShyAssassin/devnotify";
     spicetify.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    # # Hyprland
-    # hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    # # v0.48.1 is super buggy right now under nixos
-    # hyprland.url = "github:hyprwm/Hyprland?ref=v0.47.2-b";
-    # split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
-    # # Needs to be pinned to this commit since there were changes in a hyprland header
-    # split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces?rev=8287ff16cd45b71ac1c2dfd228d1ab949fdf0415";
-
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";

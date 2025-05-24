@@ -17,12 +17,8 @@ in {
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-      ];
-    })
     font-awesome
+    nerd-fonts.jetbrains-mono
   ];
 
   # Secrets and keys management
@@ -45,13 +41,12 @@ in {
 
   environment.systemPackages = with pkgs; [
     clipse wl-clipboard
-    libsForQt5.qt5ct qt6ct
     waybar dunst anyrun kitty nautilus
     gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl
-    libsForQt5.breeze-qt5 kdePackages.breeze
+    kdePackages.breeze kdePackages.breeze-icons qt6ct
     hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
-    breeze-icons adwaita-icon-theme phinger-cursors tokyonight-gtk-theme
+    adwaita-icon-theme phinger-cursors tokyonight-gtk-theme
   ];
 }

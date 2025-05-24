@@ -1,7 +1,6 @@
 {config, lib, pkgs, ...}: {
   services.openssh.enable = true;
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.hostPlatform = "x86_64-linux";
   time.timeZone = "Africa/Johannesburg";
 
   networking = {
@@ -15,7 +14,7 @@
   # Select internationalisation properties.
   console = {
     keyMap = "us";
-    useXkbConfig = true;
+    useXkbConfig = false;
     font = "Lat2-Terminus16";
   };
   i18n.defaultLocale = "en_US.UTF-8";

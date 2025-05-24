@@ -1,9 +1,7 @@
 {config, lib, pkgs, ...}: {
   services.openssh.enable = true;
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.hostPlatform = "x86_64-linux";
   time.timeZone = "Africa/Johannesburg";
-  nix.settings.experimental-features = "nix-command flakes";
 
   networking = {
     useDHCP = false;
