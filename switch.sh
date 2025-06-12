@@ -40,6 +40,7 @@ if [[ $flag == *"--deploy"* ]]; then
   exe cp --verbose --link --force .gitconfig ~
   exe cp --verbose --link --force .gitignore ~
   exe cp --verbose --link --force .gitattributes ~
+  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
   if [ "$host" == "miyabi" ]; then
     exe cp --verbose --recursive --link --force .config/ ~
     if [[ ! -f ~/.local/share/icons/default/index.theme ]]; then
@@ -50,7 +51,6 @@ if [[ $flag == *"--deploy"* ]]; then
 fi
 
 if [[ $flag == *"--upgrade"* ]]; then
-  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
   exe sudo nix-channel --update
   exe sudo nix flake update
 fi
