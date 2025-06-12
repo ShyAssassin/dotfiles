@@ -1,6 +1,8 @@
 alias copy="cp"
 alias cwd="pwd"
 alias cat="bat"
+alias vi="nvim"
+alias vim="nvim"
 alias cls="clear"
 alias man="batman"
 alias wget="wget -c"
