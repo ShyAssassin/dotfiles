@@ -32,6 +32,9 @@
     wireplumber.enable = true;
   };
 
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+
   programs.fish.enable = true;
   programs.bash = {
     interactiveShellInit = ''
@@ -49,6 +52,7 @@
     extraGroups = ["wheel" "networkmanager" "libvirtd" "gamemode"];
     packages = with pkgs; [
       yubioath-flutter
+      signal-desktop
       mangohud
       vesktop
       bottles
