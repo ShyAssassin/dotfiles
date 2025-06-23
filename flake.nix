@@ -18,14 +18,23 @@
     spicetify.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Hyprland
+    overview.url = "github:KZDKM/Hyprspace";
+    hyprsplit.url = "github:shezdy/hyprsplit";
+    overview.inputs.hyprland.follows = "hyprland";
+    hyprsplit.inputs.hyprland.follows = "hyprland";
+    easymotion.inputs.hyprland.follows = "hyprland";
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
     hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # TODO: Use upstream once #23 is merged to fix nix build
+    easymotion.url = "github:ShyAssassin/hyprland-easymotion";
     split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
     split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin, hyprland, split-monitor-workspaces, spicetify, devnotify}
-  @inputs: let
+  outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
+            hyprland, split-monitor-workspaces, hyprsplit, overview, easymotion,
+            spicetify, devnotify
+  }@inputs: let
     inherit (self) outputs;
     systems = [
       "aarch64-linux"

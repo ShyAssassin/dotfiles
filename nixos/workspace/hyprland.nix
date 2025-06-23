@@ -1,6 +1,9 @@
 {config, lib, pkgs, inputs, ...}: let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  overview = inputs.overview.packages.${pkgs.system}.Hyprspace;
   devnotify = inputs.devnotify.packages.${pkgs.system}.devnotify;
+  hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
+  easymotion = inputs.easymotion.packages.${pkgs.system}.hyprland-easymotion;
   xdg-desktop-portal-hyprland = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 in {
@@ -12,8 +15,8 @@ in {
     enable = true;
     package = hyprland;
     xwayland.enable = true;
-    plugins = [split-monitor-workspaces];
     portalPackage = xdg-desktop-portal-hyprland;
+    plugins = [split-monitor-workspaces hyprsplit overview easymotion];
   };
 
   fonts.packages = with pkgs; [
@@ -37,6 +40,15 @@ in {
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "kitty";
+  };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [
+        "kitty.desktop"
+      ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
