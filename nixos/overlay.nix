@@ -17,11 +17,22 @@
     bottles = (prev.bottles.override {
       removeWarningPopup = true;
     });
+    # On unstable, wait until 25.11 is out
     miru = prev.miru.overrideAttrs (oldAttrs: {
       buildInputs = (oldAttrs.buildInputs or []) ++ [prev.makeWrapper];
       buildCommand = (oldAttrs.buildCommand or "") + ''
         wrapProgram $out/bin/miru --unset ELECTRON_OZONE_PLATFORM_HINT
       '';
+    });
+    # On unstable, wait until 25.11 is out
+    renderdoc = prev.renderdoc.overrideAttrs (oldAttrs: {
+      buildInputs = (oldAttrs.buildInputs or []) ++ [prev.makeWrapper];
+      preFixup = (oldAttrs.preFixup or "") + ''
+        wrapProgram $out/bin/qrenderdoc --set QT_QPA_PLATFORM "wayland;xcb"
+      '';
+      cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
+        (final.lib.cmakeBool "ENABLE_UNSUPPORTED_EXPERIMENTAL_POSSIBLY_BROKEN_WAYLAND" true)
+      ];
     });
   };
 }
