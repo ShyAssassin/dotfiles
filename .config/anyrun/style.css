@@ -3,6 +3,15 @@
     font-size: 1.2rem;
 }
 
+#match,
+#plugin,
+#window,
+
+#main {
+    color: white;
+    background: rgba(0, 0, 0, 0.035);
+}
+
 box#main {
     color: white;
     padding: 0.7rem;
@@ -11,9 +20,9 @@ box#main {
     border-radius: 22px;
     border-style: double;
     border-color: rgba(230, 11, 131, 0.8);
-    background-color: rgba(16, 16, 16, 0.85);
+    background-color: rgba(16, 16, 16, 0.95);
+    box-shadow: 0 0 25px rgba(230, 11, 131, 0.15);
 }
-#main { background: transparent; }
 
 #entry {
     margin: .3rem;
@@ -24,39 +33,46 @@ box#main {
     padding: 0.6rem 1.0rem;
 }
 
-#window,
-#match,
-#entry,
-#plugin,
-
-#match.activatable {
-    border-radius: 10px;
-    padding: .3rem .9rem;
-    margin-top: .01rem;
-}
-#match.activatable:first-child { margin-top: 9px; }
-#match.activatable:last-child { margin-bottom: 1px; }
-
-#plugin:hover #match.activatable {
-    border-radius: 10px;
+#match {
     padding: .3rem;
-    margin-top: .01rem;
     margin-bottom: 0;
-}
-
-#match:selected {
-    color: @theme_selected_fg_color;
-    background: @theme_selected_bg_color;
+    margin-top: .01rem;
     border-radius: 8px;
 }
 
+#match.activatable {
+    margin-top: .01rem;
+    border-radius: 8px;
+    padding: .3rem .9rem;
+}
+
+#match.activatable:first-child {
+    margin-top: 9px;
+    margin-bottom: 0.3rem;
+}
+
+#match.activatable:last-child {
+    margin-bottom: 1px;
+}
+
+#match:selected {
+    border-radius: 8px;
+    color: @theme_selected_fg_color;
+    background: @theme_selected_bg_color;
+}
+
+#match:hover {
+    border-radius: 8px;
+    color: @theme_selected_fg_color;
+    background: @theme_selected_bg_color;
+}
 
 list > #plugin {
-    border-top: 1px solid rgba(255,255,255,.11);
     margin: 0.3rem;
+    font-weight: 400;
     padding-top: 4px;
     padding-left: 3px;
-    font-weight: 400;
+    border-top: 1px solid rgba(255,255,255,.15);
 }
 
 list > #plugin:first-child {
@@ -65,8 +81,4 @@ list > #plugin:first-child {
 
 list > #plugin:last-child {
     margin-bottom: .3rem;
-}
-
-list > #plugin:hover {
-    padding: .7rem;
 }

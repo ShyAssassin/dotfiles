@@ -1,4 +1,4 @@
 Config(
-    shell: None,
-    prefix: "exec",
+    prefix: ">",
+    shell: Some("fish"),
 )

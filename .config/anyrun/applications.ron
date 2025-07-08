@@ -1,5 +1,5 @@
 Config(
     max_entries: 5,
-    desktop_actions: false,
+    desktop_actions: true,
     terminal: Some("kitty"),
 )
