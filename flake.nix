@@ -17,18 +17,32 @@
     devnotify.url = "github:ShyAssassin/devnotify";
     spicetify.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    # Hyprland
-    overview.url = "github:KZDKM/Hyprspace";
-    hyprsplit.url = "github:shezdy/hyprsplit";
-    overview.inputs.hyprland.follows = "hyprland";
-    hyprsplit.inputs.hyprland.follows = "hyprland";
-    easymotion.inputs.hyprland.follows = "hyprland";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # TODO: Use upstream once #23 is merged to fix nix build
-    easymotion.url = "github:ShyAssassin/hyprland-easymotion";
-    split-monitor-workspaces.inputs.hyprland.follows = "hyprland";
-    split-monitor-workspaces.url = "github:Duckonaut/split-monitor-workspaces";
+    # Hyprland stuff
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.49.0";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    overview = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    easymotion = {
+      inputs.hyprland.follows = "hyprland";
+      # TODO: Use upstream once #23 has merged fixes
+      url = "github:ShyAssassin/hyprland-easymotion";
+    };
+
+    split-monitor-workspaces = {
+      inputs.hyprland.follows = "hyprland";
+      url = "github:Duckonaut/split-monitor-workspaces";
+    };
   };
 
   outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
