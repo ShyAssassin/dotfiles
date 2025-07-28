@@ -60,8 +60,8 @@
   };
 
   fileSystems."/mnt/Games" = {
-    fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" "nofail" ];
+    fsType = "ntfs";
+    options = ["rw" "uid=1000" "nofail"];
     device = "/dev/disk/by-uuid/DA3C5AC23C5A98F9";
   };
 }
