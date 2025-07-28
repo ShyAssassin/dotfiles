@@ -1,4 +1,4 @@
-{config, lib, pkgs, outputs, ...}: {
+{config, lib, pkgs, inputs, outputs, ...}: {
   nix.settings = {
     log-lines = "35";
     max-jobs = "auto";
@@ -14,5 +14,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = lib.attrValues outputs.overlays;
+  nixpkgs.overlays = (lib.attrValues outputs.overlays or []) ++ [
+    (final: _prev: import ./overlay.nix { inherit final inputs; })
+  ];
 }
