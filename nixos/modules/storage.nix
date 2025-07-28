@@ -11,5 +11,6 @@
     interval = "monthly";
   };
 
+  boot.tmp.cleanOnBoot = true;
   nix.settings.auto-optimise-store = true;
 }
