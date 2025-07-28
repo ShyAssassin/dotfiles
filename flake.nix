@@ -19,7 +19,7 @@
 
     # Hyprland stuff
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.49.0";
+      url = "github:hyprwm/Hyprland?ref=v0.50.1";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -51,14 +51,14 @@
   }@inputs: let
     inherit (self) outputs;
     systems = [
-      "aarch64-linux"
       "x86_64-linux"
+      "aarch64-linux"
       "x86_64-darwin"
       "aarch64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
-    overlays = import ./nixos/overlay.nix {inherit inputs;};
+    overlays = import ./nixos/overlay.nix {inherit inputs outputs;};
     packages = forAllSystems (system: import ./nixos/packages nixpkgs.legacyPackages.${system});
 
     nixosConfigurations = {
@@ -101,7 +101,6 @@
           ./nixos/hosts/yukime/services/nginx.nix
           ./nixos/hosts/yukime/services/wakapi.nix
           ./nixos/hosts/yukime/services/adguard.nix
-
         ];
       };
     };
