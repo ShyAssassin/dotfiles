@@ -24,8 +24,9 @@
     };
 
     overview = {
-      url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
+      # m_workspace went private in hyprland so pin for now
+      url = "github:KZDKM/Hyprspace/0a82e3724f929de8ad8fb04d2b7fa128493f24f7";
     };
 
     hyprsplit = {
@@ -41,7 +42,8 @@
 
     split-monitor-workspaces = {
       inputs.hyprland.follows = "hyprland";
-      url = "github:Duckonaut/split-monitor-workspaces";
+      # m_persistent went private in hyprland versions aboe 0.50.1 so pin for now
+      url = "github:Duckonaut/split-monitor-workspaces/d0ba2bb24953c3c35a4a369ae4b4e50cb03f1832";
     };
   };
 
