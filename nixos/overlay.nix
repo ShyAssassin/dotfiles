@@ -21,6 +21,20 @@
       removeWarningPopup = true;
     });
 
+    # https://github.com/NixOS/nixpkgs/issues/429888
+    linux-manual = prev.linux-manual.overrideAttrs (oldAttrs: {
+      nativeBuildInputs = [
+        prev.perl
+        prev.python3
+      ];
+      postPatch = ''
+        chmod +x scripts/kernel-doc.py scripts/split-man.pl
+        patchShebangs --build \
+          scripts/kernel-doc.py \
+          scripts/split-man.pl
+        '';
+    });
+
     # On unstable, wait until 25.11 is out
     miru = prev.miru.overrideAttrs (oldAttrs: {
       buildInputs = (oldAttrs.buildInputs or []) ++ [prev.makeWrapper];
