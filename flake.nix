@@ -36,8 +36,7 @@
 
     easymotion = {
       inputs.hyprland.follows = "hyprland";
-      # TODO: Use upstream once #23 has merged fixes
-      url = "github:ShyAssassin/hyprland-easymotion";
+      url = "github:zakk4223/hyprland-easymotion";
     };
 
     split-monitor-workspaces = {
