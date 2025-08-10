@@ -52,11 +52,11 @@
     extraGroups = ["wheel" "networkmanager" "libvirtd" "gamemode"];
     packages = with pkgs; [
       yubioath-flutter
+      unstable.vesktop
       signal-desktop
+      unstable.vrcx
       mangohud
-      vesktop
       bottles
-      miru
       vlc
     ];
   };
