@@ -6,5 +6,6 @@ Desktop.ini
 
 # Compiler/Interpreter cache files
 **/result
+**/.direnv
 **/__pycache__
 **/CMakeCache.txt
