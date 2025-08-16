@@ -1,0 +1,3 @@
+{
+  nvidia = ./nvidia.nix;
+}

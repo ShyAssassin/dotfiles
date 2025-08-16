@@ -1,19 +1,33 @@
-{config, lib, pkgs, ...}: {
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+{ config, lib, pkgs, ... }: with lib; let
+  cfg = config.hardware.nvidia;
+in {
+  options.hardware.nvidia = {
+    enable = mkOption {
+      default = false;
+      type = types.bool;
+      description = "Enable NVIDIA graphics support";
+    };
+    enableCudaSupport = mkOption {
+      default = true;
+      type = types.bool;
+      description = "Enable CUDA support (increases build times)";
+    };
   };
 
-  hardware.nvidia = {
-    open = true;
-    nvidiaSettings = false;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  config = mkIf cfg.enable {
+    # assert if enable is set
+    assertions = [
+      {
+        assertion = cfg.enableCudaSupport;
+        message = "CUDA support is only available on Linux.";
+      }
+    ];
+    hardware.graphics = {
+      enable = mkDefault true;
+      enable32Bit = mkDefault true;
+    };
 
-  # Beware of the build times...
-  nixpkgs.config.cudaSupport = true;
-  services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = mkDefault [ "nvidia" ];
+    nixpkgs.config.cudaSupport = mkIf cfg.enableCudaSupport true;
+  };
 }

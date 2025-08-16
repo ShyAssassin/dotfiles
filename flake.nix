@@ -77,12 +77,12 @@
           ./nixos/workspace/hyprland.nix
           ./nixos/workspace/streaming.nix
 
-          ./nixos/modules/grub.nix
-          ./nixos/modules/nvidia.nix
-          ./nixos/modules/spotify.nix
-          ./nixos/modules/storage.nix
-          ./nixos/modules/syncthing.nix
-          ./nixos/modules/virtualization.nix
+          ./nixos/modules-old/grub.nix
+          ./nixos/modules-old/nvidia.nix
+          ./nixos/modules-old/spotify.nix
+          ./nixos/modules-old/storage.nix
+          ./nixos/modules-old/syncthing.nix
+          ./nixos/modules-old/virtualization.nix
         ];
       };
       yukime = nixpkgs.lib.nixosSystem {
@@ -91,11 +91,11 @@
         modules = [
           ./nixos/common.nix
 
-          ./nixos/modules/grub.nix
+          ./nixos/modules-old/grub.nix
           ./nixos/workspace/dev.nix
-          ./nixos/modules/nvidia.nix
-          ./nixos/modules/storage.nix
-          ./nixos/modules/syncthing.nix
+          ./nixos/modules-old/nvidia.nix
+          ./nixos/modules-old/storage.nix
+          ./nixos/modules-old/syncthing.nix
 
           ./nixos/hosts/yukime/yukime.nix
           ./nixos/hosts/yukime/yukime-hw.nix
