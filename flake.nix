@@ -41,7 +41,7 @@
 
     split-monitor-workspaces = {
       inputs.hyprland.follows = "hyprland";
-      # m_persistent went private in hyprland versions aboe 0.50.1 so pin for now
+      # m_persistent went private in hyprland versions above 0.50.1 so pin for now
       url = "github:Duckonaut/split-monitor-workspaces/d0ba2bb24953c3c35a4a369ae4b4e50cb03f1832";
     };
   };
@@ -59,6 +59,7 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
+    nixosModules = import ./nixos/modules/default.nix;
     overlays = import ./nixos/overlay.nix {inherit inputs outputs;};
     packages = forAllSystems (system: import ./nixos/packages nixpkgs.legacyPackages.${system});
 
@@ -78,7 +79,6 @@
           ./nixos/workspace/streaming.nix
 
           ./nixos/modules-old/grub.nix
-          ./nixos/modules-old/nvidia.nix
           ./nixos/modules-old/spotify.nix
           ./nixos/modules-old/storage.nix
           ./nixos/modules-old/syncthing.nix
@@ -91,9 +91,8 @@
         modules = [
           ./nixos/common.nix
 
-          ./nixos/modules-old/grub.nix
           ./nixos/workspace/dev.nix
-          ./nixos/modules-old/nvidia.nix
+          ./nixos/modules-old/grub.nix
           ./nixos/modules-old/storage.nix
           ./nixos/modules-old/syncthing.nix
 

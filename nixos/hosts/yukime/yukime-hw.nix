@@ -17,6 +17,17 @@
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod"];
   };
 
+  hardware.nvidia = {
+    open = false;
+    enable = true;
+    nvidiaSettings = false;
+    enableCudaSupport = true;
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
   fileSystems."/boot" = {
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];

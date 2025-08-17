@@ -15,19 +15,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # assert if enable is set
-    assertions = [
-      {
-        assertion = cfg.enableCudaSupport;
-        message = "CUDA support is only available on Linux.";
-      }
-    ];
     hardware.graphics = {
       enable = mkDefault true;
       enable32Bit = mkDefault true;
     };
 
     services.xserver.videoDrivers = mkDefault [ "nvidia" ];
-    nixpkgs.config.cudaSupport = mkIf cfg.enableCudaSupport true;
+    nixpkgs.config.cudaSupport = mkDefault cfg.enableCudaSupport;
   };
 }

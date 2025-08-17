@@ -13,6 +13,11 @@
     options = "--delete-older-than 7d";
   };
 
+  imports = (lib.mapAttrsToList
+    (name: module: "${./modules/${name}.nix}")
+    (lib.filterAttrs (_: v: v != null) outputs.nixosModules)
+  );
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = (lib.attrValues outputs.overlays or []) ++ [
     (final: _prev: import ./overlay.nix { inherit final inputs; })
