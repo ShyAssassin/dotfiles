@@ -76,4 +76,10 @@
     options = ["nofail"];
     device = "/dev/disk/by-uuid/1030dc88-1eb3-4e00-8a07-9c3f25adc98d";
   };
+
+  fileSystems."/mnt/Storage" = {
+    fsType = "ext4";
+    options = ["nofail"];
+    device = "/dev/disk/by-uuid/ba23ceae-23bc-4aef-a2fc-2a40c14d8196";
+  };
 }
