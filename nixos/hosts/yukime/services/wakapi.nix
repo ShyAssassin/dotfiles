@@ -16,6 +16,7 @@
 
       server = {
         port = 3120;
+        # TODO: 0.0.0.0
         listen_ipv4 = "10.0.0.115";
         public_url = "https://waka.assassin.dev";
       };
@@ -28,9 +29,7 @@
     };
     database.dialect = "sqlite3";
     database.createLocally = false;
-    # Both need to be set, currently bugged
     passwordSaltFile = "/root/secrets/wakapi";
-    smtpPasswordFile = "/root/secrets/wakapi";
   };
 
   networking.firewall.allowedTCPPorts = [ 3120 ];
