@@ -23,7 +23,6 @@ in {
       showQueueDuration
     ];
     enabledCustomApps = with apps; [
-      localFiles
       newReleases
       historyInSidebar
     ];
