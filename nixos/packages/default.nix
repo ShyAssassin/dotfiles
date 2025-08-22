@@ -1,3 +1,3 @@
 pkgs: {
-  # example = pkgs.callPackage ./example { };
+  vrcx-bin = pkgs.callPackage ./vrcx-bin.nix { };
 }
