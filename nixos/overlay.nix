@@ -21,6 +21,13 @@
       removeWarningPopup = true;
     });
 
+    # Dont recompile firefox just for their shitty AI
+    firefox-unwrapped = (prev.firefox-unwrapped.override {
+      onnxruntime = prev.onnxruntime.override {
+        cudaSupport = false;
+      };
+    });
+
     # On unstable, wait until 25.11 is out
     renderdoc = prev.renderdoc.overrideAttrs (oldAttrs: {
       buildInputs = (oldAttrs.buildInputs or []) ++ [prev.makeWrapper];
