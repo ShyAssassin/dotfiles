@@ -8,6 +8,8 @@
     useRoutingFeatures = "both";
   };
 
+  modules.satisfactory.enable = true;
+
   networking = {
     useDHCP = false;
     hostName = "yukime";
@@ -53,18 +55,19 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZEUV4P2SLD2YCJ0p4rCcsJ4MhHYjUMK9GFwvwvTrn"
     ];
   };
+
   users.users.pixel = {
     isNormalUser = true;
     extraGroups = ["media"];
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9LrY5EExHHHuuAmU/dAGjFcLOeEg2rnsUHOGD1ZrNu"];
   };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
-    tmux
-    neovim
+    vim tmux
+    btop neovim
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
