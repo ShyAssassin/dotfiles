@@ -70,8 +70,8 @@ in {
 
         chmod +x ${cfg.storageDir}/FactoryServer.sh
         mkdir -p ${cfg.storageDir}/FactoryGame/Saved/Config/LinuxServer
+        ln -sf ${cfg.storageDir}/.steam/steam/linux64 ${cfg.storageDir}/.steam/sdk64
         chmod +x ${cfg.storageDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping
-        ln -sfv /var/lib/satisfactory/.steam/steam/linux64 /var/lib/satisfactory/.steam/sdk64
         ${pkgs.patchelf}/bin/patchelf --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 ${cfg.storageDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping
         ${pkgs.crudini}/bin/crudini --set ${cfg.storageDir}/FactoryGame/Saved/Config/LinuxServer/Game.ini '/Script/Engine.GameSession' MaxPlayers ${toString cfg.maxPlayers}
         ${pkgs.crudini}/bin/crudini --set ${cfg.storageDir}/FactoryGame/Saved/Config/LinuxServer/ServerSettings.ini '/Script/FactoryGame.FGServerSubsystem' mAutoPause ${if cfg.autoPause then "True" else "False"}
