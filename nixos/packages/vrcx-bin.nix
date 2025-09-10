@@ -5,11 +5,11 @@
   dotnet-runtime_9,
 }: let
   pname = "vrcx-bin";
-  version = "2025.08.17";
+  version = "2025.09.10";
   filename = builtins.replaceStrings [ "." ] [ "" ] version;
   src = fetchurl {
-    hash = "sha256-L9tjazEMkrtwe8HhJTlaRJjVTPi8EiS+SPsFgnizNnw=";
-    url = "https://github.com/vrcx-team/VRCX/releases/download/v${version}/VRCX_${filename}.AppImage";
+    hash = "sha256-WyoMJJG6Wrilh9fzJDEmGjRoI1oCz7C/0/k8+O7srZA=";
+    url = "https://github.com/vrcx-team/VRCX/releases/download/v${version}/VRCX_${filename}_x64.AppImage";
   };
   appimageContents = appimageTools.extract {
     inherit pname src version;
