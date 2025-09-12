@@ -48,7 +48,7 @@
 
   outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
             hyprland, split-monitor-workspaces, hyprsplit, overview, easymotion,
-            spicetify, devnotify
+            spicetify, devnotify, ...
   }@inputs: let
     inherit (self) outputs;
     systems = [
