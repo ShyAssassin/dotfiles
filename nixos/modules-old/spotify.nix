@@ -11,7 +11,7 @@ in {
     enable = true;
     theme = themes.comfy;
     colorScheme = "rose-pine";
-    spotifyPackage = pkgs.spotify;
+    spotifyPackage = pkgs.unstable.spotify;
     enabledExtensions = with extensions; [
       shuffle
       goToSong
