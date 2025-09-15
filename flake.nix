@@ -19,14 +19,8 @@
 
     # Hyprland stuff
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.50.1";
+      url = "github:hyprwm/Hyprland?ref=v0.51.0";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    overview = {
-      inputs.hyprland.follows = "hyprland";
-      # m_workspace went private in hyprland so pin for now
-      url = "github:KZDKM/Hyprspace/0a82e3724f929de8ad8fb04d2b7fa128493f24f7";
     };
 
     hyprsplit = {
@@ -41,13 +35,12 @@
 
     split-monitor-workspaces = {
       inputs.hyprland.follows = "hyprland";
-      # m_persistent went private in hyprland versions above 0.50.1 so pin for now
-      url = "github:Duckonaut/split-monitor-workspaces/d0ba2bb24953c3c35a4a369ae4b4e50cb03f1832";
+      url = "github:Duckonaut/split-monitor-workspaces";
     };
   };
 
   outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
-            hyprland, split-monitor-workspaces, hyprsplit, overview, easymotion,
+            hyprland, split-monitor-workspaces, hyprsplit, easymotion,
             spicetify, devnotify, ...
   }@inputs: let
     inherit (self) outputs;

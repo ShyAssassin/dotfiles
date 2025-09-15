@@ -1,6 +1,5 @@
 {config, lib, pkgs, inputs, ...}: let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  overview = inputs.overview.packages.${pkgs.system}.Hyprspace;
   devnotify = inputs.devnotify.packages.${pkgs.system}.devnotify;
   hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
   easymotion = inputs.easymotion.packages.${pkgs.system}.hyprland-easymotion;
@@ -16,7 +15,7 @@ in {
     package = hyprland;
     xwayland.enable = true;
     portalPackage = xdg-desktop-portal-hyprland;
-    plugins = [split-monitor-workspaces hyprsplit overview easymotion];
+    plugins = [split-monitor-workspaces hyprsplit easymotion];
   };
 
   fonts.packages = with pkgs; [
