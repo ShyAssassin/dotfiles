@@ -71,7 +71,7 @@ in {
       jellyfin = mkServiceOption "Jellyfin media server" true;
       bazarr = mkServiceOption "Bazarr subtitle manager" true;
       flaresolverr = mkServiceOption "FlareSolverr proxy" true;
-      prowlarr = mkServiceOption "Prowlarr indexr manager" true;
+      prowlarr = mkServiceOption "Prowlarr indexer manager" true;
       jellyseerr = mkServiceOption "Jellyseerr media requester" true;
       transmission = mkServiceOption "Transmission torrent client" true;
     };
@@ -88,9 +88,9 @@ in {
       openPeerPorts = cfg.openFirewall;
       webHome = pkgs.flood-for-transmission;
       settings = {
-        peer-limit-global = 512;
+        peer-limit-global = 256;
         peer-port = cfg.peerPort;
-        peer-limit-per-torrent = 64;
+        peer-limit-per-torrent = 16;
         rpc-bind-address = "0.0.0.0";
         rpc-whitelist-enabled = false;
         download-queue-enabled = false;
