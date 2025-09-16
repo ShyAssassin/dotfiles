@@ -5,45 +5,45 @@ in {
   options.modules.satisfactory = {
     enable = mkEnableOption "Satisfactory server";
 
-    storageDir = lib.mkOption {
-      type = lib.types.path;
+    storageDir = mkOption {
+      type = types.path;
       default = "/var/lib/satisfactory";
       description = "Directory to store game data";
     };
 
-    openFirewall = lib.mkOption {
+    openFirewall = mkOption {
       default = true;
-      type = lib.types.bool;
+      type = types.bool;
       description = "Open firewall ports for the Satisfactory server";
     };
 
-    port = lib.mkOption {
+    port = mkOption {
       default = 7777;
-      type = lib.types.port;
+      type = types.port;
       description = "Game port";
     };
 
-    reliablePort = lib.mkOption {
+    reliablePort = mkOption {
       default = 8888;
-      type = lib.types.port;
+      type = types.port;
       description = "Reliable port";
     };
 
-    maxPlayers = lib.mkOption {
+    maxPlayers = mkOption {
       default = 4;
-      type = lib.types.number;
+      type = types.number;
       description = "Maximum number of players";
     };
 
-    autoPause = lib.mkOption {
+    autoPause = mkOption {
       default = true;
-      type = lib.types.bool;
+      type = types.bool;
       description = "Auto pause when no players are on";
     };
 
-    autoSaveOnDisconnect = lib.mkOption {
+    autoSaveOnDisconnect = mkOption {
       default = true;
-      type = lib.types.bool;
+      type = types.bool;
       description = "Auto save when on a player disconnect";
     };
   };
