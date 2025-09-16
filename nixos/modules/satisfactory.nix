@@ -38,13 +38,13 @@ in {
     autoPause = lib.mkOption {
       default = true;
       type = lib.types.bool;
-      description = "Auto pause when no players are online";
+      description = "Auto pause when no players are on";
     };
 
     autoSaveOnDisconnect = lib.mkOption {
       default = true;
       type = lib.types.bool;
-      description = "Automatically save when a player disconnects";
+      description = "Auto save when on a player disconnect";
     };
   };
 
