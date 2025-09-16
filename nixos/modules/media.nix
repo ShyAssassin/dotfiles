@@ -88,14 +88,17 @@ in {
       openPeerPorts = cfg.openFirewall;
       webHome = pkgs.flood-for-transmission;
       settings = {
-        peer-limit-global = 256;
         peer-port = cfg.peerPort;
-        peer-limit-per-torrent = 16;
         rpc-bind-address = "0.0.0.0";
         rpc-whitelist-enabled = false;
+
+        peer-limit-global = 256;
+        blocklist-enabled = true;
+        peer-limit-per-torrent = 16;
         download-queue-enabled = false;
         download-dir = "${downloadsDir}";
         incomplete-dir = "${incompleteDir}";
+        blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
       };
     };
 
