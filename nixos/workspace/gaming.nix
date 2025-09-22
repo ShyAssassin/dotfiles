@@ -24,10 +24,10 @@
 
   programs.gamescope = {
     enable = true;
+    args = ["--rt"];
     # currently broken
     capSysNice = false;
     package = pkgs.gamescope;
-    args = ["--rt" "--force-grab-cursor"];
   };
 
   hardware.steam-hardware.enable = true;
