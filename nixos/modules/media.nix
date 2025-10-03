@@ -6,6 +6,15 @@
     default = defaultState;
     description = "Enable the ${desc} service";
   };
+  mkEnableService = name: setGroup: {
+    ${name} = mkIf (cfg.services.${name}) ({
+      enable = true;
+      openFirewall = cfg.openFirewall;
+    } // (optionalAttrs setGroup { group = cfg.mediaGroup; }));
+  };
+
+  jellyfinDomain = "jellyfin.${cfg.nginx.baseUrl}";
+  jellyseerrDomain = "jellyseerr.${cfg.nginx.baseUrl}";
 
   # TODO: actually create these dirs
   downloadsDir = mkMediaDir "Torrents";
@@ -80,30 +89,30 @@ in {
   config = mkIf cfg.enable {
     users.groups.${cfg.mediaGroup} = {};
 
-    services.transmission = mkIf cfg.services.transmission {
-      enable = true;
-      group = cfg.mediaGroup;
-      openRPCPort = cfg.openFirewall;
-      openFirewall = cfg.openFirewall;
-      openPeerPorts = cfg.openFirewall;
-      webHome = pkgs.flood-for-transmission;
-      settings = {
-        peer-port = cfg.peerPort;
-        rpc-bind-address = "0.0.0.0";
-        rpc-whitelist-enabled = false;
+    services = mkMerge [
+      {transmission = mkIf cfg.services.transmission {
+        enable = true;
+        group = cfg.mediaGroup;
+        openRPCPort = cfg.openFirewall;
+        openFirewall = cfg.openFirewall;
+        openPeerPorts = cfg.openFirewall;
+        webHome = pkgs.flood-for-transmission;
+        settings = {
+          peer-port = cfg.peerPort;
+          rpc-bind-address = "0.0.0.0";
+          rpc-whitelist-enabled = false;
 
-        peer-limit-global = 256;
-        blocklist-enabled = true;
-        peer-limit-per-torrent = 16;
-        download-queue-enabled = false;
-        download-dir = "${downloadsDir}";
-        incomplete-dir = "${incompleteDir}";
-        blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
-      };
-    };
+          peer-limit-global = 256;
+          blocklist-enabled = true;
+          peer-limit-per-torrent = 16;
+          download-queue-enabled = false;
+          download-dir = "${downloadsDir}";
+          incomplete-dir = "${incompleteDir}";
+          blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
+        };
+      };}
 
-    services.nginx = {
-      virtualHosts."jellyseerr.assassin.dev" = {
+      {nginx.virtualHosts.${jellyseerrDomain} = {
         forceSSL = cfg.nginx.enableSSL;
         enableACME = cfg.nginx.enableSSL;
 
@@ -127,9 +136,9 @@ in {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           '';
         };
-      };
+      };}
 
-      virtualHosts."jellyfin.assassin.dev" = {
+      {nginx.virtualHosts.${jellyfinDomain} = {
         forceSSL = cfg.nginx.enableSSL;
         enableACME = cfg.nginx.enableSSL;
 
@@ -169,60 +178,17 @@ in {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           '';
         };
-      };
-    };
+      };}
 
-    services = {
-      sonarr = mkIf cfg.services.sonarr {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      radarr = mkIf cfg.services.radarr {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      lidarr = mkIf cfg.services.lidarr {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      bazarr = mkIf cfg.services.bazarr {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      readarr = mkIf cfg.services.readarr {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      prowlarr = mkIf cfg.services.prowlarr {
-        enable = true;
-        openFirewall = cfg.openFirewall;
-      };
-
-      jellyfin = mkIf cfg.services.jellyfin {
-        enable = true;
-        group = cfg.mediaGroup;
-        openFirewall = cfg.openFirewall;
-      };
-
-      jellyseerr = mkIf cfg.services.jellyseerr {
-        enable = true;
-        openFirewall = cfg.openFirewall;
-      };
-
-      flaresolverr = mkIf cfg.services.flaresolverr {
-        enable = true;
-        openFirewall = cfg.openFirewall;
-      };
-    };
+      (mkEnableService "sonarr" true)
+      (mkEnableService "radarr" true)
+      (mkEnableService "lidarr" true)
+      (mkEnableService "bazarr" true)
+      (mkEnableService "readarr" true)
+      (mkEnableService "jellyfin" true)
+      (mkEnableService "prowlarr" false)
+      (mkEnableService "jellyseerr" false)
+      (mkEnableService "flaresolverr" false)
+    ];
   };
 }
