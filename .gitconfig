@@ -1,6 +1,7 @@
 [user]
     name = [Assassin]
     username = ShyAssassin
+    signingkey = 01C9D37CC333ADDC
     email = ShyAssassin@assassin.dev
 [core]
     eol = lf
@@ -13,6 +14,10 @@
     status = auto
 [fetch]
     prune = true
+[commit]
+    gpgsign = true
+[tag]
+    gpgSign = true
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
