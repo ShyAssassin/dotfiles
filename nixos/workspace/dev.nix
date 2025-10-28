@@ -23,7 +23,6 @@
     enable = true;
     lfs.enable = true;
     prompt.enable = true;
-    lfs.enablePureSSHTransfer = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -31,7 +30,7 @@
     vscode imhex
     gdb lldb tracy
     bat bat-extras.batman
-    gh lazygit github-desktop
+    git gh lazygit github-desktop
     config.boot.kernelPackages.perf
     linux-manual man-pages man-pages-posix
   ];
