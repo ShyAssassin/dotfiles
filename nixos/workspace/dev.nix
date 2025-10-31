@@ -25,6 +25,13 @@
     prompt.enable = true;
   };
 
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-qt;
+  };
+
   environment.systemPackages = with pkgs; [
     renderdoc
     vscode imhex
