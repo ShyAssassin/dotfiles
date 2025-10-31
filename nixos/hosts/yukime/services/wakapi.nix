@@ -36,7 +36,9 @@
 
   services.nginx.virtualHosts."waka.assassin.dev" = {
     forceSSL = true;
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = "assassin.dev";
+
     locations."/" = {
       proxyPass = "http://10.0.0.115:3120";
     };

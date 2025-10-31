@@ -114,7 +114,8 @@ in {
 
       {nginx.virtualHosts.${jellyseerrDomain} = {
         forceSSL = cfg.nginx.enableSSL;
-        enableACME = cfg.nginx.enableSSL;
+        useACMEHost = cfg.nginx.baseUrl;
+        # enableACME = cfg.nginx.enableSSL;
 
         extraConfig = ''
           client_max_body_size 20M;
@@ -140,7 +141,8 @@ in {
 
       {nginx.virtualHosts.${jellyfinDomain} = {
         forceSSL = cfg.nginx.enableSSL;
-        enableACME = cfg.nginx.enableSSL;
+        useACMEHost = cfg.nginx.baseUrl;
+        # enableACME = cfg.nginx.enableSSL;
 
         extraConfig = ''
           client_max_body_size 20M;

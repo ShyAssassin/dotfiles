@@ -25,7 +25,10 @@
   security.acme = {
     acceptTerms = true;
     certs."assassin.dev" = {
+      group = "nginx";
+      domain = "*.assassin.dev";
       dnsProvider = "cloudflare";
+      extraDomainNames = ["assassin.dev"];
       environmentFile = "/root/secrets/acme";
     };
     defaults.email = "ShyAssassin@assassin.dev";
@@ -33,7 +36,9 @@
 
   services.nginx.virtualHosts."yukime.assassin.dev" = {
     forceSSL = true;
-    enableACME = true;
+    # enableACME = true;
+    useACMEHost = "assassin.dev";
+
     locations."/" = {
       root = "/var/www/403";
     };
