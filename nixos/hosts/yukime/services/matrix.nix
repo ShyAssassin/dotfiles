@@ -6,6 +6,7 @@
       allow_federation = true;
       allow_registration = false;
       server_name = "assassin.dev";
+      address = [ "127.0.0.1" "::1" ];
       new_user_displayname_suffix = "";
       registration_token = "SuperSecret";
       max_request_size = 32000000; # 32 MB
@@ -34,14 +35,24 @@
 
     listen = [
       {
-        ssl = true;
         port = 443;
-        addr = "0.0.0.0";
+        addr = "[::0]";
+        ssl = true;
       }
       {
+        port = 8448;
+        addr = "[::0]";
         ssl = true;
+      }
+      {
+        port = 443;
+        addr = "0.0.0.0";
+        ssl = true;
+      }
+      {
         port = 8448;
         addr = "0.0.0.0";
+        ssl = true;
       }
     ];
 
@@ -62,10 +73,12 @@
     locations = {
       "/_matrix/" = {
         proxyWebsockets = true;
-        proxyPass = "http://127.0.0.1:6167";
+        proxyPass = "http://127.0.0.1:6167$request_uri";
       };
-      "/".return = "301 https://assassin.dev/";
-      "/_conduwuit/".proxyPass = "http://127.0.0.1:6167";
+      # "/".return= "301 https://assassin.dev$request_uri";
+      "/".proxyPass = "http://127.0.0.1:6167$request_uri";
+      "/_conduwuit/".proxyPass = "http://127.0.0.1:6167$request_uri";
+      "/.wellknown/matrix/".proxyPass = "http://127.0.0.1:6167$request_uri";
     };
   };
 }
