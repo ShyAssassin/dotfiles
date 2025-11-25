@@ -11,11 +11,13 @@
     attributesfile = ~/.gitattributes
 [color]
     ui = auto
+    diff = auto
     status = auto
 [fetch]
     prune = true
 [commit]
     gpgsign = true
+    cleanup = strip
 [tag]
     gpgSign = true
 [filter "lfs"]
