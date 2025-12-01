@@ -3,7 +3,7 @@
     libvirtd = {
       enable = true;
       qemu = {
-        ovmf.enable = true;
+        # ovmf.enable = true;
         swtpm.enable = true;
       };
     };

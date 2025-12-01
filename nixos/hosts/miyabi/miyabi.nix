@@ -9,6 +9,7 @@
     networkmanager.enable = true;
   };
 
+  services.tailscale.enable = true;
   services.displayManager.ly.enable = true;
 
   # Select internationalisation properties.
@@ -61,7 +62,6 @@
     ];
   };
 
-  services.pcscd.enable = true;
   systemd.user.services.arRPC = {
     serviceConfig = {
       Restart = "always";
@@ -80,14 +80,6 @@
     neovim
     fastfetch
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
