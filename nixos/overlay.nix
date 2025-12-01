@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  additions = final: _prev: import ./packages final.pkgs;
+  additions = final: prev:
+    import ./packages {
+      pkgs = prev;
+      inherit inputs;
+    };
 
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -26,17 +30,6 @@
       onnxruntime = prev.onnxruntime.override {
         cudaSupport = false;
       };
-    });
-
-    # On unstable, wait until 25.11 is out
-    renderdoc = prev.renderdoc.overrideAttrs (oldAttrs: {
-      buildInputs = (oldAttrs.buildInputs or []) ++ [prev.makeWrapper];
-      preFixup = (oldAttrs.preFixup or "") + ''
-        wrapProgram $out/bin/qrenderdoc --set QT_QPA_PLATFORM "wayland;xcb"
-      '';
-      cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
-        (final.lib.cmakeBool "ENABLE_UNSUPPORTED_EXPERIMENTAL_POSSIBLY_BROKEN_WAYLAND" true)
-      ];
     });
   };
 }

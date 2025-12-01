@@ -27,21 +27,10 @@
       url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
-
-    easymotion = {
-      inputs.hyprland.follows = "hyprland";
-      url = "github:zakk4223/hyprland-easymotion";
-    };
-
-    split-monitor-workspaces = {
-      inputs.hyprland.follows = "hyprland";
-      url = "github:Duckonaut/split-monitor-workspaces";
-    };
   };
 
   outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
-            hyprland, split-monitor-workspaces, hyprsplit, easymotion,
-            spicetify, devnotify, ...
+            hyprland, hyprsplit, spicetify, devnotify, ...
   }@inputs: let
     inherit (self) outputs;
     systems = [
@@ -54,7 +43,10 @@
   in {
     nixosModules = import ./nixos/modules/default.nix;
     overlays = import ./nixos/overlay.nix {inherit inputs outputs;};
-    packages = forAllSystems (system: import ./nixos/packages nixpkgs.legacyPackages.${system});
+    packages = forAllSystems (system: import ./nixos/packages {
+      inherit inputs outputs;
+      pkgs = nixpkgs.${system};
+    });
 
     nixosConfigurations = {
       miyabi = nixpkgs.lib.nixosSystem {

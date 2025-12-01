@@ -2,7 +2,6 @@
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   devnotify = inputs.devnotify.packages.${pkgs.system}.devnotify;
   hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
-  easymotion = inputs.easymotion.packages.${pkgs.system}.hyprland-easymotion;
   xdg-desktop-portal-hyprland = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 in {
@@ -14,8 +13,8 @@ in {
     enable = true;
     package = hyprland;
     xwayland.enable = true;
+    plugins = [hyprsplit pkgs.easymotion];
     portalPackage = xdg-desktop-portal-hyprland;
-    plugins = [split-monitor-workspaces hyprsplit easymotion];
   };
 
   fonts.packages = with pkgs; [
@@ -56,8 +55,8 @@ in {
     gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl
-    kdePackages.breeze kdePackages.breeze-icons qt6ct
     hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
     adwaita-icon-theme phinger-cursors tokyonight-gtk-theme
+    kdePackages.breeze kdePackages.breeze-icons kdePackages.qt6ct
   ];
 }
