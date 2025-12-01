@@ -1,0 +1,6 @@
+Config(
+  prefix: ":nr",
+  max_entries: 5,
+  allow_unfree: true,
+  channel: "nixpkgs-unstable",
+)

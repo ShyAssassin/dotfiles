@@ -1,8 +1,8 @@
 Config(
-    prefix: "",
+    prefix: "?",
     max_entries: 3,
+    icon: "vscode",
     command: "code",
-    show_empty: false,
+    show_empty: true,
     path: "~/.config/Code",
-    icon: "com.visualstudio.code",
 )

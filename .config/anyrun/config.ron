@@ -30,6 +30,7 @@ Config(
     plugins: [
         "librink.so",
         "libshell.so",
+        "libnix_run.so",
         "libsymbols.so",
         "libapplications.so",
         "libvscode_recents.so"

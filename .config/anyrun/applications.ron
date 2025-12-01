@@ -1,5 +1,8 @@
 Config(
     max_entries: 5,
-    desktop_actions: true,
-    terminal: Some("kitty"),
+    desktop_actions: false,
+    terminal: Some(Terminal(
+        args: "-e {}",
+        command: "kitty",
+    ))
 )
