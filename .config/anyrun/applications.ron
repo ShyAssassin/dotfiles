@@ -1,8 +1,11 @@
 Config(
     max_entries: 5,
     desktop_actions: false,
+    hide_description: true,
+    preprocess_exec_script: None,
+
     terminal: Some(Terminal(
         args: "-e {}",
         command: "kitty",
-    ))
+    )),
 )
