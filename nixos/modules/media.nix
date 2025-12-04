@@ -93,6 +93,7 @@ in {
       {transmission = mkIf cfg.services.transmission {
         enable = true;
         group = cfg.mediaGroup;
+        package = pkgs.transmission_4;
         openRPCPort = cfg.openFirewall;
         openFirewall = cfg.openFirewall;
         openPeerPorts = cfg.openFirewall;
