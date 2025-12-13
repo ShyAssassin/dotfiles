@@ -56,6 +56,15 @@
     ];
   };
 
+  users.users.tina = {
+    extraGroups = [];
+    isNormalUser = true;
+    packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINmuHyyOtAxG1GSuqIoeeGfV8XfLQGzS6zalYuAumlD+"
+    ];
+  };
+
   users.users.pixel = {
     isNormalUser = true;
     extraGroups = ["media"];
