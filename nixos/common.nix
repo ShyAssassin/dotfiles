@@ -13,7 +13,9 @@
     options = "--delete-older-than 7d";
   };
 
-  imports = (lib.mapAttrsToList
+  imports = [
+    ./users.nix
+  ] ++ (lib.mapAttrsToList
     (name: module: "${./modules/${name}.nix}")
     (lib.filterAttrs (_: v: v != null) outputs.nixosModules)
   );

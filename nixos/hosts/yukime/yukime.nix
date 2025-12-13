@@ -36,49 +36,36 @@
     isNormalUser = true;
     packages = with pkgs; [];
     extraGroups = ["wheel" "media"];
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+kNski6X9Vot6gej9aNj0b+CCyjC19gCAQGOGOvsc8"];
   };
 
   users.users.durpy = {
     isNormalUser = true;
     extraGroups = ["media"];
     packages = with pkgs; [];
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHWjNu6Blw8q7dto9tCEVebroFJ0MLRvr0NVFPLzoevS"];
   };
 
   users.users.kitty = {
     extraGroups = [];
     isNormalUser = true;
     packages = with pkgs; [];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2UFubyRdz4RB4t36hVW9cOXbO7OFfZCrpeKWVc+MJP"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZEUV4P2SLD2YCJ0p4rCcsJ4MhHYjUMK9GFwvwvTrn"
-    ];
   };
 
   users.users.tina = {
     extraGroups = [];
     isNormalUser = true;
     packages = with pkgs; [];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINmuHyyOtAxG1GSuqIoeeGfV8XfLQGzS6zalYuAumlD+"
-    ];
   };
 
   users.users.quinten = {
     extraGroups = [];
     isNormalUser = true;
     packages = with pkgs; [];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINCqf7igKE0dymwQUoBV0Wrxh7GTMb4oU6KDJMNzTQ4+"
-    ];
   };
 
   users.users.pixel = {
     isNormalUser = true;
     extraGroups = ["media"];
     packages = with pkgs; [];
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9LrY5EExHHHuuAmU/dAGjFcLOeEg2rnsUHOGD1ZrNu"];
   };
 
   # List packages installed in system profile. To search, run:
