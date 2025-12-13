@@ -29,6 +29,7 @@ in hyprland.stdenv.mkDerivation rec {
 
     mkdir -p "$out/lib"
     cp -r ./hypreasymotion.so "$out/lib/libhyprland-easymotion.so"
+
     runHook postInstall
   '';
 }

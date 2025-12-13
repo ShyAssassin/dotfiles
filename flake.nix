@@ -2,20 +2,24 @@
   description = "NixOS configurations and dotfiles";
 
   inputs = {
-    # NixOS
+    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
 
-    # NixDarwin
-    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    # Modules
+    spicetify.url = "github:Gerg-L/spicetify-nix";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+
+    # Module Follows
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    spicetify.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Random Applications
     devnotify.inputs.nixpkgs.follows = "nixpkgs";
-    spicetify.url = "github:Gerg-L/spicetify-nix";
     devnotify.url = "github:ShyAssassin/devnotify";
-    spicetify.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Hyprland stuff
     hyprland = {
@@ -30,7 +34,7 @@
   };
 
   outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
-            hyprland, hyprsplit, spicetify, devnotify, ...
+            home-manager, spicetify, hyprland, hyprsplit, devnotify, ...
   }@inputs: let
     inherit (self) outputs;
     systems = [
