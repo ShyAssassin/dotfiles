@@ -91,6 +91,11 @@
           ./nixos/hosts/yukime/services/matrix.nix
           ./nixos/hosts/yukime/services/wakapi.nix
           ./nixos/hosts/yukime/services/adguard.nix
+          ./nixos/hosts/yukime/services/grafana.nix
+
+          ./nixos/hosts/yukime/services/loki.nix
+          ./nixos/hosts/yukime/services/prometheus.nix
+          ./nixos/hosts/yukime/services/promtail.nix
         ];
       };
     };

@@ -4,7 +4,46 @@
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
+    statusPage = true;
     appendHttpConfig = ''
+      log_format logging '$remote_addr - $remote_user [$time_local] '
+                         '"$request" $status $body_bytes_sent '
+                         '"$http_referer" "$http_user_agent" "$http_x_forwarded_for" '
+                         'rt=$request_time uct="$upstream_connect_time" '
+                         'uht="$upstream_header_time" urt="$upstream_response_time"';
+
+      log_format json_analytics escape=json '{'
+        '"connection_requests": "$connection_requests", '
+        '"request_length": "$request_length", '
+        '"remote_addr": "$remote_addr", '
+        '"request_uri": "$request_uri", '
+        '"status": "$status", '
+        '"bytes_sent": "$bytes_sent", '
+        '"http_referer": "$http_referer", '
+        '"http_user_agent": "$http_user_agent", '
+        '"http_host": "$http_host", '
+        '"upstream_connect_time": "$upstream_connect_time", '
+        '"upstream_response_time": "$upstream_response_time", '
+        '"ssl_protocol": "$ssl_protocol", '
+        '"ssl_cipher": "$ssl_cipher", '
+        '"scheme": "$scheme", '
+        '"request_method": "$request_method", '
+        '"server_protocol": "$server_protocol" '
+      '}';
+
+      access_log /var/log/nginx/access.log logging;
+      access_log /var/log/nginx/website_access.log json_analytics;
+
+      server {
+        listen 127.0.0.1:8080;
+        location /nginx_status {
+          stub_status on;
+          access_log off;
+          allow 127.0.0.1;
+          deny all;
+        }
+      }
+
       server {
         listen 80 default_server;
         listen 443 default_server;
