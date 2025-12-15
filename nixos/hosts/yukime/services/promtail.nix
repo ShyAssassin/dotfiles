@@ -1,5 +1,4 @@
 {config, lib, pkgs, ...}: {
-  # add promtail user to nginx group
   services.promtail = {
     enable = true;
 

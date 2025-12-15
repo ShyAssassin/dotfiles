@@ -1,10 +1,10 @@
 {config, lib, pkgs, ...}: {
   services.nginx = {
     enable = true;
+    statusPage = true;
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
-    statusPage = true;
     appendHttpConfig = ''
       log_format logging '$remote_addr - $remote_user [$time_local] '
                          '"$request" $status $body_bytes_sent '
