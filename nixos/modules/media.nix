@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }: with lib; let
   cfg = config.modules.mediaServer;
-  mkMediaDir = subdir: "${cfg.storageDir}/${subdir}";
   mkServiceOption = desc: defaultState: mkOption {
     type = types.bool;
     default = defaultState;
@@ -16,9 +15,8 @@
   jellyfinDomain = "jellyfin.${cfg.nginx.baseUrl}";
   jellyseerrDomain = "jellyseerr.${cfg.nginx.baseUrl}";
 
-  # TODO: actually create these dirs
-  downloadsDir = mkMediaDir "Torrents";
-  incompleteDir = "${downloadsDir}/.incomplete";
+  torrentsDir = "${cfg.storageDir}/Torrents";
+  inctorrentDir = "${cfg.storageDir}/Torrents/.incomplete";
 in {
   options.modules.mediaServer = {
     enable = mkEnableOption "media server stack";
@@ -89,6 +87,25 @@ in {
   config = mkIf cfg.enable {
     users.groups.${cfg.mediaGroup} = {};
 
+    # Creates needed thingies
+    systemd.tmpfiles.rules = [
+      # Top level consumable media directories
+      "d ${cfg.storageDir}/Anime 0775 sonarr ${cfg.mediaGroup} -"
+      "d ${cfg.storageDir}/Shows 0775 sonarr ${cfg.mediaGroup} -"
+      "d ${cfg.storageDir}/Music 0775 lidarr ${cfg.mediaGroup} -"
+      "d ${cfg.storageDir}/Books 0775 readarr ${cfg.mediaGroup} -"
+      "d ${cfg.storageDir}/Movies 0775 radarr ${cfg.mediaGroup} -"
+
+      # Torrent and torrent clients download directories
+      "d ${torrentsDir} 0775 transmission ${cfg.mediaGroup} -"
+      "d ${inctorrentDir} 0775 transmission ${cfg.mediaGroup} -"
+      "d ${torrentsDir}/lidarr 0775 transmission ${cfg.mediaGroup} -"
+      "d ${torrentsDir}/radarr 0775 transmission ${cfg.mediaGroup} -"
+      "d ${torrentsDir}/sonarr 0775 transmission ${cfg.mediaGroup} -"
+      "d ${torrentsDir}/readarr 0775 transmission ${cfg.mediaGroup} -"
+      "d ${torrentsDir}/prowlarr 0775 transmission ${cfg.mediaGroup} -"
+    ];
+
     services = mkMerge [
       {transmission = mkIf cfg.services.transmission {
         enable = true;
@@ -107,8 +124,8 @@ in {
           blocklist-enabled = true;
           peer-limit-per-torrent = 16;
           download-queue-enabled = false;
-          download-dir = "${downloadsDir}";
-          incomplete-dir = "${incompleteDir}";
+          download-dir = "${torrentsDir}";
+          incomplete-dir = "${inctorrentDir}";
           blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
         };
       };}
