@@ -8,6 +8,7 @@
     useRoutingFeatures = "both";
   };
 
+  modules.mediaServer.enable = true;
   modules.satisfactory.enable = true;
 
   networking = {
@@ -30,7 +31,6 @@
     };
   };
 
-  modules.mediaServer.enable = true;
 
   users.users.assassin = {
     isNormalUser = true;

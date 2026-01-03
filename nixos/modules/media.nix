@@ -12,11 +12,14 @@
     } // (optionalAttrs setGroup { group = cfg.mediaGroup; }));
   };
 
+  slskdDomain = "slskd.${cfg.nginx.baseUrl}";
   jellyfinDomain = "jellyfin.${cfg.nginx.baseUrl}";
   jellyseerrDomain = "jellyseerr.${cfg.nginx.baseUrl}";
 
   torrentsDir = "${cfg.storageDir}/Torrents";
+  soulSeekDir = "${cfg.storageDir}/Downloads";
   inctorrentDir = "${cfg.storageDir}/Torrents/.incomplete";
+  incSoulSeekDir = "${cfg.storageDir}/Downloads/.incomplete";
 in {
   options.modules.mediaServer = {
     enable = mkEnableOption "media server stack";
@@ -24,19 +27,25 @@ in {
     mediaGroup = mkOption {
       type = types.str;
       default = "media";
-      description = "Group name for media services";
+      description = "Group for media services";
     };
 
     storageDir = mkOption {
       type = types.path;
       default = "/mnt/Storage";
-      description = "Base storage directory for media files";
+      description = "Base directory for media files";
+    };
+
+    listenPort = mkOption {
+      default = 50300;
+      type = types.port;
+      description = "Default port for SoulSeek listening";
     };
 
     peerPort = mkOption {
       default = 51413;
       type = types.port;
-      description = "Default port for BitTorrent peer connections";
+      description = "Default port for torrent peer connections";
     };
 
     openFirewall = mkOption {
@@ -80,6 +89,7 @@ in {
       flaresolverr = mkServiceOption "FlareSolverr proxy" true;
       prowlarr = mkServiceOption "Prowlarr indexer manager" true;
       jellyseerr = mkServiceOption "Jellyseerr media requester" true;
+      slskd = mkServiceOption "Soulseek p2p file sharing service" true;
       transmission = mkServiceOption "Transmission torrent client" true;
     };
   };
@@ -89,6 +99,10 @@ in {
 
     # Creates needed thingies
     systemd.tmpfiles.rules = [
+      # Soulseek directories
+      "d ${soulSeekDir} 0775 slskd ${cfg.mediaGroup} -"
+      "d ${incSoulSeekDir} 0775 slskd ${cfg.mediaGroup} -"
+
       # Top level consumable media directories
       "d ${cfg.storageDir}/Anime 0775 sonarr ${cfg.mediaGroup} -"
       "d ${cfg.storageDir}/Shows 0775 sonarr ${cfg.mediaGroup} -"
@@ -128,6 +142,33 @@ in {
           incomplete-dir = "${inctorrentDir}";
           blocklist-url = "https://github.com/Naunter/BT_BlockLists/raw/master/bt_blocklists.gz";
         };
+      };}
+
+      {slskd = mkIf cfg.services.slskd {
+        enable = true;
+        group = cfg.mediaGroup;
+        domain = "${slskdDomain}";
+        openFirewall = cfg.openFirewall;
+        # TODO: actually use a secret manager
+        environmentFile = "/root/secrets/slskd";
+        settings = {
+          global.upload.slots = 15;
+          global.download.slots = 15;
+          remote_file_management = true;
+          permissions.file.mode = "0775";
+          soulseek.listen_port = cfg.listenPort;
+          directories.downloads = "${soulSeekDir}/";
+          rooms = [ "Linux" "The Lobby" "lossless" ];
+          directories.incomplete = "${incSoulSeekDir}/";
+          shares.directories = [ "${cfg.storageDir}/Music" ];
+          soulseek.description = "${cfg.nginx.baseUrl} Soulseek Server";
+        };
+      };}
+
+      {slskd.nginx = mkIf cfg.services.slskd {
+        forceSSL = cfg.nginx.enableSSL;
+        useACMEHost = cfg.nginx.baseUrl;
+        # enableACME = cfg.nginx.enableSSL;
       };}
 
       {nginx.virtualHosts.${jellyseerrDomain} = {
