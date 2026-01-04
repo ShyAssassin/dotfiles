@@ -152,6 +152,20 @@ in {
         # TODO: actually use a secret manager
         environmentFile = "/root/secrets/slskd";
         settings = {
+          shares.directories = [
+            "${cfg.storageDir}/Music"
+            "${cfg.storageDir}/Anime"
+            "${cfg.storageDir}/Shows"
+            "${cfg.storageDir}/Books"
+            "${cfg.storageDir}/Movies"
+          ];
+
+          soulseek.description = ''
+            ${cfg.nginx.baseUrl} Soulseek Server
+            All infrastructure is open source and on NixOS
+            Owned and operated by ShyAssassin feel free to grab stuff
+          '';
+
           global.upload.slots = 15;
           global.download.slots = 15;
           remote_file_management = true;
@@ -160,8 +174,6 @@ in {
           directories.downloads = "${soulSeekDir}/";
           rooms = [ "Linux" "The Lobby" "lossless" ];
           directories.incomplete = "${incSoulSeekDir}/";
-          shares.directories = [ "${cfg.storageDir}/Music" ];
-          soulseek.description = "${cfg.nginx.baseUrl} Soulseek Server";
         };
       };}
 
