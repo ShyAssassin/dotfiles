@@ -50,11 +50,14 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    clipse wl-clipboard
-    waybar dunst anyrun kitty nautilus
+    unstable.vicinae
+
+
+    wl-clipboard
+    waybar dunst kitty nautilus
     gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
-    killall xorg.xrandr libnotify playerctl
+    killall xorg.xrandr libnotify playerctl pwvucontrol
     hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
     adwaita-icon-theme phinger-cursors tokyonight-gtk-theme
     kdePackages.breeze kdePackages.breeze-icons kdePackages.qt6ct
