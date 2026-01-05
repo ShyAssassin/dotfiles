@@ -98,6 +98,20 @@
           ./nixos/hosts/yukime/services/promtail.nix
         ];
       };
+      satsuki = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/common.nix
+
+          ./nixos/workspace/dev.nix
+          ./nixos/modules-old/grub.nix
+          ./nixos/modules-old/storage.nix
+
+          ./nixos/hosts/satsuki/satsuki.nix
+          ./nixos/hosts/satsuki/satsuki-hw.nix
+        ];
+      };
     };
     darwinConfigurations = {
       senko = nix-darwin.lib.darwinSystem {
