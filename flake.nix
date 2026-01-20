@@ -23,7 +23,7 @@
 
     # Hyprland stuff
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.52.2";
+      url = "github:hyprwm/Hyprland?ref=v0.53.1";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -49,7 +49,7 @@
     overlays = import ./nixos/overlay.nix {inherit inputs outputs;};
     packages = forAllSystems (system: import ./nixos/packages {
       inherit inputs outputs;
-      pkgs = nixpkgs.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     });
 
     nixosConfigurations = {
