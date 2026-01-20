@@ -11,8 +11,8 @@ in hyprland.stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "zakk4223";
     repo = "hyprland-easymotion";
-    rev = "2bcecf24e9d9b7db372554d3673ae72d766f3047";
-    sha256 = "sha256-fAhIPhKMhB8DrfFUXxRxTOLIAIJ2muqnS/6ZboSP9gg=";
+    rev = "5a4f7882c77783497a880e8d931433a85b6b6324";
+    sha256 = "sha256-IDGwKvZtD/yajPNk1ImEvrUkiolkCBxnmlM5AnWOwHM=";
   };
 
   dontUseNinjaBuild = true;
