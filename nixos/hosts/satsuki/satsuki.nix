@@ -17,15 +17,13 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "za";
     variant = "";
+    layout = "za";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.assassin = {
     isNormalUser = true;
-    description = "assassin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["wheel"];
     packages = with pkgs; [];
   };
 
@@ -64,5 +62,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
