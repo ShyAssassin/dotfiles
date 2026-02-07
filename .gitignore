@@ -9,3 +9,7 @@ Desktop.ini
 **/.direnv
 **/__pycache__
 **/CMakeCache.txt
+
+# Miscellaneous
+.stignore
+**/.stfolder
