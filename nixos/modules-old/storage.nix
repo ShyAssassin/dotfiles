@@ -7,8 +7,8 @@
 
   services.btrfs.autoScrub = {
     enable = true;
-    fileSystems = ["/"];
-    interval = "monthly";
+    interval = "weekly";
+    fileSystems = [ "/" ];
   };
 
   boot.tmp.cleanOnBoot = true;
