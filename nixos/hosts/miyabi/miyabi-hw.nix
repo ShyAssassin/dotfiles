@@ -2,17 +2,18 @@
   imports =[(modulesPath + "/installer/scan/not-detected.nix")];
 
   networking.useDHCP = lib.mkDefault true;
-  swapDevices = [ { device = "/swap/swapfile"; } ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  swapDevices = [ { device = "/swap/swapfile"; size = 128*1024; } ];
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   boot = {
-    extraModulePackages = [ ];
     initrd.kernelModules = [ ];
     kernelModules = ["kvm-amd"];
     supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.linuxPackages;
     kernelParams = ["amd_iommu=on" "iommu=pt"];
+    blacklistedKernelModules = ["hid-thrustmaster"];
+    extraModulePackages = with config.boot.kernelPackages; [hid-tmff2];
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   };
 
@@ -45,38 +46,38 @@
   fileSystems."/" ={
     fsType = "btrfs";
     options = ["subvol=@" "compress=zstd"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/home" = {
     fsType = "btrfs";
     options = ["subvol=@home" "compress=zstd"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/nix" = {
     fsType = "btrfs";
     options = ["subvol=@nix" "compress=zstd" "noatime"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/var/log" = {
     fsType = "btrfs";
     neededForBoot = true;
-    options = ["subvol=@log" "compress=zstd"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    options = ["subvol=@varlog" "compress=zstd"];
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/snapshots" = {
     fsType = "btrfs";
     options = ["subvol=@snapshots" "compress=zstd"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/swap" = {
     fsType = "btrfs";
-    options = ["subvol=@swap" "noatime"];
-    device = "/dev/disk/by-uuid/8f135b5b-be57-4ffb-92ac-330a48606de5";
+    options = ["subvol=@swapfile" "noatime"];
+    device = "/dev/disk/by-uuid/63ec8a18-95d0-4284-94ad-f3904583e87a";
   };
 
   fileSystems."/mnt/Games" = {
