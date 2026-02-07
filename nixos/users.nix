@@ -1,7 +1,9 @@
 { lib, ... }: with lib; let
   sshKeys = {
     assassin = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+kNski6X9Vot6gej9aNj0b+CCyjC19gCAQGOGOvsc8"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE25wSwrQocB/KIiqcwgnm/PLMb9Nhey1DyxP3MhJea+ assassin@senko"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQgS251CIUz+KTsWperXUTi7IpZybWC7y00WvgqCjfH assassin@miyabi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOsU/awCR90Luj4ydHK85vls40TYcIlU14RD3pXW01OK assassin@yukime"
     ];
 
     durpy = [
