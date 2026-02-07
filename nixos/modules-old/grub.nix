@@ -6,6 +6,10 @@
       efiSupport = true;
       useOSProber = true;
       configurationLimit = 25;
+      memtest86 = {
+        enable = true;
+        params = ["btrace"];
+      };
     };
     efi.canTouchEfiVariables = true;
   };
