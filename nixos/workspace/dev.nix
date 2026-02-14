@@ -39,6 +39,7 @@
     bat bat-extras.batman
     git gh lazygit github-desktop
     config.boot.kernelPackages.perf
-    linux-manual man-pages man-pages-posix
+    # https://github.com/NixOS/nixpkgs/issues/489956
+    # linux-manual man-pages man-pages-posix
   ];
 }
