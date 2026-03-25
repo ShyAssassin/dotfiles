@@ -23,7 +23,7 @@
 
     # Hyprland stuff
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.54.0";
+      url = "github:hyprwm/Hyprland?ref=v0.54.1";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -70,7 +70,7 @@
           ./nixos/modules-old/grub.nix
           ./nixos/modules-old/spotify.nix
           ./nixos/modules-old/storage.nix
-          ./nixos/modules-old/syncthing.nix
+          # ./nixos/modules-old/syncthing.nix
           ./nixos/modules-old/virtualization.nix
         ];
       };
