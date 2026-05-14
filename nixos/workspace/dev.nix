@@ -35,11 +35,10 @@
   environment.systemPackages = with pkgs; [
     renderdoc
     vscode imhex
-    gdb lldb tracy
+    git gh lazygit
+    gdb lldb tracy nixd
     bat bat-extras.batman
-    git gh lazygit github-desktop
     config.boot.kernelPackages.perf
-    # https://github.com/NixOS/nixpkgs/issues/489956
-    # linux-manual man-pages man-pages-posix
+    linux-manual man-pages man-pages-posix
   ];
 }
