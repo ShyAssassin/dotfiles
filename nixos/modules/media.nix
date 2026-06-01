@@ -134,7 +134,7 @@ in {
           rpc-bind-address = "0.0.0.0";
           rpc-whitelist-enabled = false;
 
-          peer-limit-global = 256;
+          peer-limit-global = 128;
           blocklist-enabled = true;
           peer-limit-per-torrent = 16;
           download-queue-enabled = false;
