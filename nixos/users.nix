@@ -7,7 +7,7 @@
     ];
 
     durpy = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHWjNu6Blw8q7dto9tCEVebroFJ0MLRvr0NVFPLzoevS"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIt5f66NE2cJ42MyTOoX+Gt7ZwlVNBTRGi9Dx3CV5Luk durpy@nyanix"
     ];
 
     kitty = [
