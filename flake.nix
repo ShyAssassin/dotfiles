@@ -21,20 +21,14 @@
     devnotify.inputs.nixpkgs.follows = "nixpkgs";
     devnotify.url = "github:ShyAssassin/devnotify";
 
-    # Hyprland stuff
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.54.3";
+      url = "github:hyprwm/Hyprland?ref=v0.55.2";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
-      inputs.hyprland.follows = "hyprland";
     };
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, nix-darwin, nixpkgs-darwin,
-            home-manager, spicetify, hyprland, hyprsplit, devnotify, ...
+  outputs = {self, nixpkgs, nixpkgs-unstable, nixpkgs-darwin,
+            nix-darwin, home-manager, spicetify, hyprland, devnotify, ...
   }@inputs: let
     inherit (self) outputs;
     systems = [

@@ -1,9 +1,7 @@
 {config, lib, pkgs, inputs, ...}: let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   devnotify = inputs.devnotify.packages.${pkgs.system}.devnotify;
-  hyprsplit = inputs.hyprsplit.packages.${pkgs.system}.hyprsplit;
   xdg-desktop-portal-hyprland = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-  split-monitor-workspaces = inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces;
 in {
   imports = [
     inputs.hyprland.nixosModules.default
@@ -13,12 +11,13 @@ in {
     enable = true;
     package = hyprland;
     xwayland.enable = true;
-    plugins = [hyprsplit pkgs.easymotion];
-    portalPackage = xdg-desktop-portal-hyprland;
+    # portalPackage = xdg-desktop-portal-hyprland;
   };
 
   fonts.packages = with pkgs; [
+    noto-fonts
     font-awesome
+    noto-fonts-cjk-serif
     nerd-fonts.jetbrains-mono
   ];
 
@@ -50,11 +49,8 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.vicinae
-
-
-    wl-clipboard
     waybar dunst kitty nautilus
+    wl-clipboard unstable.vicinae
     gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl pwvucontrol
