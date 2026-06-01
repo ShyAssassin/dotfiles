@@ -75,10 +75,10 @@
         proxyWebsockets = true;
         proxyPass = "http://127.0.0.1:6167$request_uri";
       };
-      # "/".return= "301 https://assassin.dev$request_uri";
       "/".proxyPass = "http://127.0.0.1:6167$request_uri";
+      # "/".return= "301 https://assassin.dev$request_uri";
       "/_conduwuit/".proxyPass = "http://127.0.0.1:6167$request_uri";
-      "/.wellknown/matrix/".proxyPass = "http://127.0.0.1:6167$request_uri";
+      "/.well-known/matrix/".proxyPass = "http://127.0.0.1:6167$request_uri";
     };
   };
 }
