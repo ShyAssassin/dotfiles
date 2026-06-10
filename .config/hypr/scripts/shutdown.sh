@@ -22,5 +22,5 @@ systemctl --user stop arRPC
 systemctl --user stop hyprpolkitagent
 
 if [ -n "$(pgrep Hyprland)" ]; then
-    hyprctl dispatch exit
+    hyprctl dispatch 'hl.dsp.exit()'
 fi
