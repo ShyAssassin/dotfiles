@@ -40,17 +40,27 @@ if [[ $flag == *"--deploy"* ]]; then
   exe cp --verbose --link --force .gitconfig ~
   exe cp --verbose --link --force .gitignore ~
   exe cp --verbose --link --force .gitattributes ~
-  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
   if [ "$host" == "miyabi" ]; then
-    exe cp --verbose --recursive --link --force .config/ ~
-    if [[ ! -f ~/.local/share/icons/default/index.theme ]]; then
+    exe mkdir -p "$HOME/.config"
+    for dir in dotfiles/*; do
+      if [ -d "$dir" ]; then
+        target_dir="$HOME/.config/$(basename "$dir")"
+        if [ -d "$target_dir" ] && [ ! -L "$target_dir" ]; then
+          echo "Removing existing directory: $target_dir"
+          exe rm -rf "$target_dir"
+        fi
+        exe ln -sfv "$(pwd)/$dir" "$HOME/.config/"
+      fi
+    done
+    if [[ ! -f "$HOME/.local/share/icons/default/index.theme" ]]; then
       # Fix for missing cursor in xwayland + electron apps under hyprland
-      exe cp --verbose --recursive /run/current-system/sw/share/icons/phinger-cursors-dark ~/.local/share/icons/default
+      exe cp --verbose --recursive /run/current-system/sw/share/icons/phinger-cursors-dark "$HOME/.local/share/icons/default"
     fi
   fi
 fi
 
 if [[ $flag == *"--upgrade"* ]]; then
+  exe sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
   exe sudo nix-channel --update
   exe sudo nix flake update
 fi
