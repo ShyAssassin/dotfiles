@@ -3,14 +3,14 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
 
     # Modules
     spicetify.url = "github:Gerg-L/spicetify-nix";
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-26.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
 
     # Module Follows
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,7 @@
     devnotify.url = "github:ShyAssassin/devnotify";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.55.2";
+      url = "github:hyprwm/Hyprland?ref=v0.55.3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
@@ -85,11 +85,11 @@
           ./nixos/hosts/yukime/services/matrix.nix
           ./nixos/hosts/yukime/services/wakapi.nix
           ./nixos/hosts/yukime/services/adguard.nix
-          ./nixos/hosts/yukime/services/grafana.nix
 
-          ./nixos/hosts/yukime/services/loki.nix
-          ./nixos/hosts/yukime/services/prometheus.nix
-          ./nixos/hosts/yukime/services/promtail.nix
+          # ./nixos/hosts/yukime/services/loki.nix
+          # ./nixos/hosts/yukime/services/grafana.nix
+          # ./nixos/hosts/yukime/services/promtail.nix
+          # ./nixos/hosts/yukime/services/prometheus.nix
         ];
       };
       satsuki = nixpkgs.lib.nixosSystem {
