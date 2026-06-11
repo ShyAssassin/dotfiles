@@ -29,7 +29,7 @@
     };
     database.dialect = "sqlite3";
     database.createLocally = false;
-    passwordSaltFile = "/root/secrets/wakapi";
+    environmentFiles =  [ "/root/secrets/wakapi" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 3120 ];
