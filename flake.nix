@@ -46,6 +46,35 @@
       pkgs = nixpkgs.legacyPackages.${system};
     });
 
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell rec {
+        buildInputs = with pkgs; [
+          git lazygit gh
+          nixd bash tmux btop
+          quickshell lua python3
+          kdePackages.qtdeclarative
+          vim neovim nano helix emacs
+        ];
+
+        shellHook = ''
+          export EDITOR="nvim"
+          export NIX_CONFIG="extra-experimental-features = nix-command flakes"
+        '';
+      };
+    });
+
+    darwinConfigurations = {
+      senko = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/hosts/senko.nix
+        ];
+      };
+    };
+
     nixosConfigurations = {
       miyabi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -68,6 +97,7 @@
           ./nixos/modules-old/virtualization.nix
         ];
       };
+
       yukime = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
@@ -92,6 +122,7 @@
           # ./nixos/hosts/yukime/services/prometheus.nix
         ];
       };
+
       satsuki = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
@@ -104,15 +135,6 @@
 
           ./nixos/hosts/satsuki/satsuki.nix
           ./nixos/hosts/satsuki/satsuki-hw.nix
-        ];
-      };
-    };
-    darwinConfigurations = {
-      senko = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nixos/hosts/senko.nix
         ];
       };
     };
