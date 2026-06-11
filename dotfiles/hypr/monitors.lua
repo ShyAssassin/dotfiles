@@ -1,3 +1,6 @@
+---@diagnostic disable: need-check-nil
+---@diagnostic disable: lowercase-global
+
 local hs = require("plugins.hyprsplit")
 local handle = io.popen("hostname")
 local hostname = handle:read("*a")
@@ -32,7 +35,7 @@ else
     num_workspace = 10
     hl.notification.create({
         icon = 2,
-        duration = "2500",
+        timeout = 2500,
         color = "rgb(fede05)",
         text = "Unknown host guessing",
     })
@@ -49,7 +52,7 @@ hl.config({
     cursor = {
         hide_on_touch = true,
         no_hardware_cursors = 2,
-        default_monitor = default_monitor,
+        default_monitor = primary_monitor,
     }
 })
 

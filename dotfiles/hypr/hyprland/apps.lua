@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global
+
 terminal = "kitty"
 browser = "firefox"
 menu = "vicinae toggle"

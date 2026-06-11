@@ -25,9 +25,9 @@ local function notify_error(formatString, ...)
     local error = string.format("[hyprsplit] error: " .. formatString, ...)
     log(error)
     hl.notification.create({
-        text = error,
-        duration = "10000",
         icon = 3,
+        text = error,
+        timeout = 10000,
         color = "rgb(ff0000)",
     })
 end
