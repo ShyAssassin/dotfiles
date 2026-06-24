@@ -84,6 +84,7 @@ hl.config({
         follow_mouse = 2,
         sensitivity = 0.0,
         force_no_accel = true,
+        accel_profile = "flat",
         touchpad = {
             tap_to_click = true,
             disable_while_typing = true,
