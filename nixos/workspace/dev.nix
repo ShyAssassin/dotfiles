@@ -34,10 +34,10 @@
 
   environment.systemPackages = with pkgs; [
     renderdoc
-    vscode imhex
     git gh lazygit
     gdb lldb tracy nixd
     bat bat-extras.batman
+    vscode imhex zellij helix
     config.boot.kernelPackages.perf
     linux-manual man-pages man-pages-posix
   ];
