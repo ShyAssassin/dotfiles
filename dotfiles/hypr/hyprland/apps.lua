@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 
-terminal = "kitty"
 browser = "firefox"
+terminal = "alacritty"
 menu = "vicinae toggle"
 fileManager = "nautilus -w"
 colorPicker = "hyprpicker -a"

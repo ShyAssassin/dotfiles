@@ -36,21 +36,21 @@ in {
 
   programs.nautilus-open-any-terminal = {
     enable = true;
-    terminal = "kitty";
+    terminal = "alacritty";
   };
 
   xdg.terminal-exec = {
     enable = true;
     settings = {
       default = [
-        "kitty.desktop"
+        "alacritty.desktop"
       ];
     };
   };
 
   environment.systemPackages = with pkgs; [
-    waybar dunst kitty nautilus
     wl-clipboard unstable.vicinae
+    waybar dunst alacritty nautilus
     gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl pwvucontrol

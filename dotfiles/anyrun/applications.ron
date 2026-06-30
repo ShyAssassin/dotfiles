@@ -6,6 +6,6 @@ Config(
 
     terminal: Some(Terminal(
         args: "-e {}",
-        command: "kitty",
+        command: "alacritty",
     )),
 )
