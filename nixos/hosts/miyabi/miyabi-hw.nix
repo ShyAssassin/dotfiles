@@ -78,8 +78,8 @@
   };
 
   fileSystems."/mnt/Games" = {
-    fsType = "ntfs";
-    options = ["rw" "uid=1000" "nofail"];
-    device = "/dev/disk/by-uuid/DA3C5AC23C5A98F9";
+    fsType = "ext4";
+    options = ["rw" "nofail" "errors=remount-ro"];
+    device = "/dev/disk/by-uuid/8aa2a098-44bc-4b59-acdd-0fcc06f45539";
   };
 }
