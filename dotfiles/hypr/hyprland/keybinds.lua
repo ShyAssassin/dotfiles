@@ -24,7 +24,7 @@ hl.bind(main_mod .. " + V", hl.dsp.exec_cmd(cliphist))
 hl.bind(main_mod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(main_mod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot))
 hl.bind(main_mod .. " + SHIFT + C", hl.dsp.exec_cmd(colorPicker))
-hl.bind("CTRL + ALT + delete", hl.dsp.exec_cmd(terminal .. " btop"))
+hl.bind("CTRL + ALT + delete", hl.dsp.exec_cmd(terminal .. " -e btop"))
 
 -- window navigation
 hl.bind("CTRL + ALT + TAB", hl.dsp.exec_cmd(winoverview))
