@@ -1,0 +1,176 @@
+# ── Syntax ────────────────────────────────────────────────────────────────────
+
+"attribute"                       = "tag-attr"
+"comment"                         = { fg = "comment", modifiers = ["italic"] }
+"constant"                        = "const-user"
+"constant.builtin"                = "teal"
+"constant.character"              = "const-user"
+"constant.character.escape"       = "tag-attr"
+"constant.numeric"                = "number"
+"constructor"                     = "type-name"
+"function"                        = "function"
+"function.builtin"                = { fg = "lib-func", modifiers = ["bold"] }
+"function.macro"                  = "function"
+"keyword"                         = "keyword"
+"keyword.control.conditional"     = { fg = "keyword", modifiers = ["italic"] }
+"keyword.directive"               = { fg = "preprocessor", modifiers = ["italic"] }
+"keyword.operator"                = "keyword"
+"label"                           = "tag-attr"
+"namespace"                       = "white"
+"operator"                        = "keyword"
+"punctuation"                     = "fg"
+"punctuation.delimiter"           = "fg"
+"punctuation.special"             = "function"
+"special"                         = "function"
+"string"                          = "string"
+"string.regexp"                   = "tag-attr"
+"string.special"                  = "tag-attr"
+"string.special.path"             = "string"
+"string.special.symbol"           = "tag-attr"
+"string.special.url"              = { fg = "string", modifiers = ["underlined"] }
+"tag"                             = "tag-pink"
+"tag.attribute"                   = "tag-attr"
+"tag.delimiter"                   = "fg"
+"type"                            = { fg = "type-name", modifiers = ["italic"] }
+"type.builtin"                    = { fg = "type-name", modifiers = ["italic"] }
+"type.enum.variant"               = "type-name"
+"variable"                        = "variable"
+"variable.builtin"                = "white"
+"variable.other.member"           = "lavender"
+"variable.parameter"              = { fg = "param", modifiers = ["italic"] }
+
+# ── Markup ────────────────────────────────────────────────────────────────────
+
+"markup.bold"                     = { modifiers = ["bold"] }
+"markup.heading"                  = { fg = "fg", modifiers = ["bold"] }
+"markup.heading.1"                = { fg = "fg", modifiers = ["bold"] }
+"markup.heading.2"                = { fg = "function", modifiers = ["bold"] }
+"markup.heading.3"                = { fg = "function" }
+"markup.heading.4"                = { fg = "variable" }
+"markup.heading.5"                = { fg = "variable" }
+"markup.heading.6"                = { fg = "comment" }
+"markup.heading.marker"           = "comment"
+"markup.italic"                   = { modifiers = ["italic"] }
+"markup.link.label"               = "function"
+"markup.link.text"                = "function"
+"markup.link.url"                 = { fg = "string", modifiers = ["underlined"] }
+"markup.link.uri"                 = { fg = "string", modifiers = ["underlined"] }
+"markup.list"                     = "function"
+"markup.list.checked"             = { fg = "function", modifiers = ["crossed_out"] }
+"markup.list.unchecked"           = "comment"
+"markup.quote"                    = { fg = "comment", modifiers = ["italic"] }
+"markup.raw"                      = "teal"
+"markup.raw.block"                = "teal"
+"markup.raw.inline"               = "teal"
+"markup.strikethrough"            = { modifiers = ["crossed_out"] }
+
+# ── Diff ──────────────────────────────────────────────────────────────────────
+
+"diff.delta"                      = "function"
+"diff.delta.moved"                = "tag-attr"
+"diff.minus"                      = "error"
+"diff.plus"                       = "green"
+
+# ── Diagnostics ───────────────────────────────────────────────────────────────
+
+"diagnostic"                      = { underline = { style = "curl" } }
+"diagnostic.deprecated"           = { modifiers = ["crossed_out"] }
+"diagnostic.error"                = { underline = { color = "error", style = "curl" } }
+"diagnostic.hint"                 = { underline = { color = "comment", style = "curl" } }
+"diagnostic.info"                 = { underline = { color = "blue", style = "curl" } }
+"diagnostic.unnecessary"          = { modifiers = ["dim"] }
+"diagnostic.warning"              = { underline = { color = "warning", style = "curl" } }
+
+error   = "error"
+warning = "warning"
+info    = "blue"
+hint    = "comment"
+
+# ── UI ────────────────────────────────────────────────────────────────────────
+
+"ui.background"                   = { fg = "fg", bg = "bg" }
+"ui.background.separator"         = { fg = "border" }
+"ui.cursor"                       = { fg = "bg", bg = "fg" }
+"ui.cursor.insert"                = { fg = "bg", bg = "fg-dim" }
+"ui.cursor.match"                 = { fg = "gold", modifiers = ["bold", "underlined"] }
+"ui.cursor.primary"               = { fg = "bg", bg = "white" }
+"ui.cursor.primary.insert"        = { fg = "bg", bg = "white" }
+"ui.cursor.primary.normal"        = { fg = "bg", bg = "white" }
+"ui.cursor.primary.select"        = { fg = "bg", bg = "tag-attr" }
+"ui.cursor.select"                = { fg = "bg", bg = "tag-attr" }
+"ui.cursorline.primary"           = { bg = "line-highlight" }
+"ui.cursorline.secondary"         = { bg = "line-highlight" }
+"ui.gutter"                       = { bg = "bg" }
+# "ui.gutter.selected"              = { bg = "line-highlight" }
+"ui.help"                         = { fg = "fg", bg = "bg-alt" }
+"ui.highlight"                    = { bg = "selection", modifiers = ["bold"] }
+"ui.highlight.frameline"          = { bg = "selection" }
+"ui.linenr"                       = { fg = "comment", bg = "bg" }
+"ui.linenr.selected"              = { fg = "fg", bg = "bg" }
+"ui.menu"                         = { fg = "fg", bg = "bg-alt" }
+"ui.menu.scroll"                  = { fg = "comment", bg = "selection" }
+"ui.menu.selected"                = { fg = "bg", bg = "pink" }
+"ui.popup"                        = { fg = "fg-dim", bg = "bg-alt" }
+"ui.popup.info"                   = { fg = "fg-dim", bg = "bg-alt" }
+"ui.selection"                    = { bg = "selection" }
+"ui.selection.primary"            = { bg = "selection-strong" }
+"ui.statusline"                   = { fg = "white", bg = "bg-alt" }
+"ui.statusline.inactive"          = { fg = "comment", bg = "bg-alt" }
+"ui.statusline.insert"            = { fg = "white", bg = "pink", modifiers = ["bold"] }
+"ui.statusline.normal"            = { fg = "white", bg = "statusbar", modifiers = ["bold"] }
+"ui.statusline.select"            = { fg = "white", bg = "tag-attr", modifiers = ["bold"] }
+"ui.statusline.separator"         = { fg = "comment" }
+"ui.text"                         = { fg = "white" }
+"ui.text.focus"                   = { fg = "pink" }
+"ui.text.inactive"                = { fg = "comment" }
+"ui.text.info"                    = { fg = "fg" }
+"ui.virtual.inlay-hint"           = { fg = "inlay-hint" }
+"ui.virtual.inlay-hint.parameter" = { fg = "comment", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.type"      = { fg = "comment", modifiers = ["italic"] }
+"ui.virtual.jump-label"           = { fg = "function", modifiers = ["bold"] }
+"ui.virtual.ruler"                = { bg = "inlay-hint" }
+"ui.virtual.whitespace"           = { fg = "inlay-hint" }
+"ui.virtual.wrap"                 = { fg = "inlay-hint" }
+"ui.window"                       = { fg = "border" }
+
+# ── Palette ───────────────────────────────────────────────────────────────────
+
+[palette]
+bg                = "#202330"
+bg-alt            = "#2d2f42"
+line-highlight    = "#472541"
+selection         = "#472541"
+selection-strong  = "#575b61"
+border            = "#9498a1"
+fg                = "#FFF0F5"
+fg-dim            = "#ffd4dd"
+white             = "#ffffff"
+comment           = "#6D7A72"
+inlay-hint        = "#565970"
+
+string            = "#FAE8B6"
+number            = "#FF38A2"
+teal              = "#58B896"
+const-user        = "#FF7F9D"
+keyword           = "#FF4791"
+storage           = "#FEC831"
+lavender          = "#DCBFF2"
+function          = "#ffc85b"
+param             = "#EBA4AC"
+tag-pink          = "#FA508C"
+lib-func          = "#A2C2EB"
+variable          = "#EBA4AC"
+tag-attr          = "#E6A1FF"
+type-name         = "#94AFE8"
+preprocessor      = "#9A9A9A"
+
+# UI accent colors
+pink              = "#fe7c8e"
+statusbar         = "#f3b4bf"
+gold              = "#d0963a"
+
+# Diff colors
+green             = "#3bc089"
+error             = "#ff62a5"
+warning           = "#FEC831"
+blue              = "#6089B4"
