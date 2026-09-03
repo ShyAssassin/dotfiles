@@ -20,7 +20,7 @@ in {
       services.openssh = {
         authorizedKeysInHomedir = false;
         settings = {
-          MaxSessions = mkDefault 3;
+          MaxSessions = mkDefault 5;
           PermitEmptyPasswords = false;
           PermitUserEnvironment = false;
           X11Forwarding = mkDefault false;
