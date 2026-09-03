@@ -83,12 +83,12 @@ in {
       sonarr = mkServiceOption "Sonarr show manager" true;
       radarr = mkServiceOption "Radarr movie manager" true;
       lidarr = mkServiceOption "Lidarr music manager" true;
+      seerr = mkServiceOption "Seerr media requester" true;
       readarr = mkServiceOption "Readarr ebook manager" true;
       jellyfin = mkServiceOption "Jellyfin media server" true;
       bazarr = mkServiceOption "Bazarr subtitle manager" true;
       flaresolverr = mkServiceOption "FlareSolverr proxy" true;
       prowlarr = mkServiceOption "Prowlarr indexer manager" true;
-      jellyseerr = mkServiceOption "Jellyseerr media requester" true;
       slskd = mkServiceOption "Soulseek p2p file sharing service" true;
       transmission = mkServiceOption "Transmission torrent client" true;
     };
@@ -257,10 +257,10 @@ in {
       (mkEnableService "radarr" true)
       (mkEnableService "lidarr" true)
       (mkEnableService "bazarr" true)
+      (mkEnableService "seerr" false)
       (mkEnableService "readarr" true)
       (mkEnableService "jellyfin" true)
       (mkEnableService "prowlarr" false)
-      (mkEnableService "jellyseerr" false)
       (mkEnableService "flaresolverr" false)
     ];
   };
