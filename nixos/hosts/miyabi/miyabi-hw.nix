@@ -17,6 +17,20 @@
     initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   };
 
+  services.udev.extraRules = ''
+    # Bigscreen Beyond
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="35bd", ATTRS{idProduct}=="0101", MODE="0660", GROUP="wheel"
+    # Bigscreen Beyond Firmware Mode
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="35bd", ATTRS{idProduct}=="4004", MODE="0660", GROUP="wheel"
+    # Bigscreen Beyond Error Mode
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="35bd", ATTRS{idProduct}=="1001", MODE="0660", GROUP="wheel"
+
+    # Bigscreen Bigeye
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="35bd", ATTRS{idProduct}=="0202", MODE="0660", GROUP="wheel"
+    # Bigscreen Bigeye DFU Mode
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="35bd", ATTRS{idProduct}=="0282", MODE="0660", GROUP="wheel"
+  '';
+
   hardware.nvidia = {
     open = true;
     enable = true;
@@ -25,7 +39,25 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # Bigscreen beyond fixes https://github.com/NVIDIA/open-gpu-kernel-modules/issues/1039
+    package = config.boot.kernelPackages.nvidiaPackages.stable // {
+      open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [
+          (builtins.fetchurl {
+            sha256 = "sha256-9lYaXPvzuxbMD07MBf3mCcVmj4T04eTcbih5li5/7Kg=";
+            url = "https://raw.githubusercontent.com/triple-groove/nvidia-bsb-dsc-fix/main/0001-fix-dsc-correct-RC-parameter-tables-to-match-VESA-DS.patch";
+          })
+          (builtins.fetchurl {
+            sha256 = "sha256-LbqyuQzQ8EZ7nhhiiWTS6UrWvuKXvSXVHHB0S0G44qM=";
+            url = "https://raw.githubusercontent.com/triple-groove/nvidia-bsb-dsc-fix/main/0002-fix-dsc-use-bits_per_component-for-flatnessDetThresh.patch";
+          })
+          (builtins.fetchurl {
+            sha256 = "sha256-F7Wp09FL2qwMs7BDIvPguegZDI3N+Avx23JRX12sCWA=";
+            url = "https://raw.githubusercontent.com/triple-groove/nvidia-bsb-dsc-fix/main/0003-fix-dp-add-Bigscreen-Beyond-VR-headset-to-WAR-databa.patch";
+          })
+        ];
+      });
+    };
     # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #   version = "595.71.05";
     #   openSha256 = "sha256-Lfz71QWKM6x/jD2B22SWpUi7/og30HRlXg1kL3EWzEw=";
