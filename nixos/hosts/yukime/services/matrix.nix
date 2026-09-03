@@ -1,4 +1,7 @@
-{config, lib, pkgs, ...}: {
+{inputs, config, lib, pkgs, ...}: {
+  disabledModules = [ "services/matrix/continuwuity.nix" ];
+  imports = ["${inputs.nixpkgs-unstable}/nixos/modules/services/matrix/continuwuity.nix"];
+
   services.matrix-continuwuity = {
     enable = true;
     settings.global = {
@@ -6,6 +9,7 @@
       allow_federation = true;
       allow_registration = false;
       server_name = "assassin.dev";
+      allow_outgoing_presence = true;
       address = [ "127.0.0.1" "::1" ];
       new_user_displayname_suffix = "";
       registration_token = "SuperSecret";
@@ -16,6 +20,8 @@
         client = "https://matrix.assassin.dev";
       };
     };
+    # Bite me, stable is way behind so yea...
+    package = pkgs.unstable.matrix-continuwuity;
   };
 
   services.heisenbridge = {
@@ -78,6 +84,7 @@
       "/".proxyPass = "http://127.0.0.1:6167$request_uri";
       # "/".return= "301 https://assassin.dev$request_uri";
       "/_conduwuit/".proxyPass = "http://127.0.0.1:6167$request_uri";
+      "/_continuwuity/".proxyPass = "http://127.0.0.1:6167$request_uri";
       "/.well-known/matrix/".proxyPass = "http://127.0.0.1:6167$request_uri";
     };
   };
