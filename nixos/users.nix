@@ -26,6 +26,10 @@
     pixel = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9LrY5EExHHHuuAmU/dAGjFcLOeEg2rnsUHOGD1ZrNu"
     ];
+
+    zvit = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFLTCoAAHoImrR+FdiWmGJDD7ke8MmiTaZukANS/uPvQ zvit"
+    ];
   };
 in {
   options.users.users = mkOption {

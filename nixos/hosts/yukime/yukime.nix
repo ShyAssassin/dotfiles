@@ -51,8 +51,8 @@
   };
 
   users.users.tina = {
-    extraGroups = [];
     isNormalUser = true;
+    extraGroups = ["media"];
     packages = with pkgs; [];
   };
 
@@ -63,6 +63,12 @@
   };
 
   users.users.pixel = {
+    isNormalUser = true;
+    extraGroups = ["media"];
+    packages = with pkgs; [];
+  };
+
+  users.users.zvit = {
     isNormalUser = true;
     extraGroups = ["media"];
     packages = with pkgs; [];
