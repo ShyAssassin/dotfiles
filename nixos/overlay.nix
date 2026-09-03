@@ -32,6 +32,23 @@
       };
     });
 
+    # Make WayVR work with SteamVR (—ᴗ—)
+    wayvr = prev.wayvr.overrideAttrs (old: {
+      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
+        final.makeWrapper
+      ];
+
+      postInstall = (old.postInstall or "") + ''
+        wrapProgram $out/bin/wayvr \
+          --prefix LD_LIBRARY_PATH : ${final.lib.makeLibraryPath (
+            (old.buildInputs or []) ++ [
+              final.libGL
+              final.libuuid
+            ]
+          )}
+      '';
+    });
+
     discord = (prev.discord.override {
       withVencord = true;
       withOpenASAR = true;
