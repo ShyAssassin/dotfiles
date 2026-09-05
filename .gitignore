@@ -5,6 +5,8 @@ Desktop.ini
 .Spotlight-V100
 
 # Compiler/Interpreter cache files
+**/bin
+**/build
 **/result
 **/.direnv
 **/.qmlls.ini
