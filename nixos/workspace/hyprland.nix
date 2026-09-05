@@ -48,14 +48,14 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    wl-clipboard unstable.vicinae
+  environment.systemPackages = with pkgs.unstable; [
+    quickshell
+    wl-clipboard vicinae
     waybar dunst alacritty nautilus
-    gtk-engine-murrine gnome-themes-extra
     grim slurp devnotify ffmpegthumbnailer
     killall xorg.xrandr libnotify playerctl pwvucontrol
+    gnome-themes-extra adwaita-icon-theme phinger-cursors
     hyprpaper hypridle hyprlock hyprpicker hyprpolkitagent
-    adwaita-icon-theme phinger-cursors tokyonight-gtk-theme
     kdePackages.breeze kdePackages.breeze-icons kdePackages.qt6ct
   ];
 }
