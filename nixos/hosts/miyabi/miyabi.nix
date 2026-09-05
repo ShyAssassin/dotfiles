@@ -10,48 +10,6 @@
     networkmanager.enable = true;
   };
 
-  services.syncthing = {
-    enable = true;
-    user = "assassin";
-    openDefaultPorts = true;
-    guiAddress = "0.0.0.0:8384";
-    dataDir = "/home/assassin/Documents";
-    configDir = "/home/assassin/.config/syncthing";
-    # extraFlags = [ "--no-default-folder" "--no-browser" ];
-
-    devices = {
-      "Senko" = { id = "NKARLM4-DURBWQC-YJRU2F2-W6YXYSI-FK7M45F-S42BPE3-RW7IILC-AKYN4AS"; };
-      "Yukime" = { id = "MGTHG2V-HTOUSQR-PQORNVX-WG6OFUU-V2CD4ZE-DDH73EK-6MSYSUT-6H2HIQZ"; };
-    };
-
-    folders = {
-      "VRChat" = {
-        id = "czy9z-eukyp";
-        devices = [ "Senko" "Yukime" ];
-        ignorePatterns = [ "(?d)desktop.ini" ];
-        path = "/home/assassin/Pictures/VRChat";
-      };
-      "Dotfiles" = {
-        id = "xj9km-7npqr";
-        devices = [ "Senko" "Yukime" ];
-        path = "/home/assassin/dotfiles";
-        ignorePatterns = [ "#include .gitignore" ];
-      };
-      "Screenshots" = {
-        id = "m4wv2-8tfhz";
-        devices = [ "Senko" "Yukime" ];
-        ignorePatterns = [ "(?d)desktop.ini" ];
-        path = "/home/assassin/Pictures/Screenshots";
-      };
-      "Development" = {
-        id = "6qea3-gopcu";
-        devices = [ "Senko" "Yukime" ];
-        path = "/home/assassin/Development";
-        ignorePatterns = [ "#include .stignore.common" ];
-      };
-    };
-  };
-
   services.tailscale.enable = true;
   services.displayManager.ly.enable = true;
 
@@ -95,13 +53,17 @@
     description = "[Assassin]";
     extraGroups = ["wheel" "networkmanager" "libvirtd" "gamemode"];
     packages = with pkgs; [
+      unstable.prismlauncher
       yubioath-flutter
       unstable.vesktop
       signal-desktop
       unstable.vrcx
       oversteer
+      sable-bin
       mangohud
+      unityhub
       bottles
+      alcom
       vlc
     ];
   };
