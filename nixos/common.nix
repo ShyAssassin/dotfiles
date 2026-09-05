@@ -4,6 +4,7 @@
     max-jobs = "auto";
     auto-optimise-store = true;
     nix-path = config.nix.nixPath;
+    trusted-users = [ "root" "assassin" ];
     experimental-features = "nix-command flakes";
   };
 
@@ -15,6 +16,7 @@
 
   imports = [
     ./users.nix
+    ./asyncthing.nix
   ] ++ (lib.mapAttrsToList
     (name: module: "${./modules/${name}.nix}")
     (lib.filterAttrs (_: v: v != null) outputs.nixosModules)
