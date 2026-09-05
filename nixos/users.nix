@@ -4,6 +4,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE25wSwrQocB/KIiqcwgnm/PLMb9Nhey1DyxP3MhJea+ assassin@senko"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQgS251CIUz+KTsWperXUTi7IpZybWC7y00WvgqCjfH assassin@miyabi"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOsU/awCR90Luj4ydHK85vls40TYcIlU14RD3pXW01OK assassin@yukime"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1NUuaOezi6HKgF4k9J4nXYP9szGQI+gwpunLpUTcWD assassin@satsuki"
     ];
 
     durpy = [
