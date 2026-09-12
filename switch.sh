@@ -1,4 +1,5 @@
 #!/bin/sh
+set -euo pipefail
 
 exe() {
   if [ $dryrun -eq 1 ]; then
