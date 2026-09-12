@@ -38,6 +38,11 @@
         final.makeWrapper
       ];
 
+      postPatch = (old.postPatch or "") + ''
+      substituteInPlace dash-frontend/src/util/pactl_wrapper.rs \
+        --replace-fail '"pactl"' '"${final.lib.getExe' final.pulseaudio "pactl"}"'
+      '';
+
       postInstall = (old.postInstall or "") + ''
         wrapProgram $out/bin/wayvr \
           --prefix LD_LIBRARY_PATH : ${final.lib.makeLibraryPath (
