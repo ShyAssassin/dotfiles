@@ -89,6 +89,7 @@ Singleton {
             hmsTimeProcess.running = true
             unixTimeProcess.running = true
             kanjiTimeProcess.running = true
+            kanjiWeekdayProcess.running = true
         }
     }
 }
