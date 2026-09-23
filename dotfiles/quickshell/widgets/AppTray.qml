@@ -24,6 +24,8 @@ Item {
 
                 width: appTrayItemIcon.implicitWidth
                 height: appTrayItemIcon.implicitHeight
+                visible: !(modelData.status === Status.Passive)
+
                 color: appTrayItemMouseArea.containsMouse ? '#09ffffff' : "transparent"
 
                 IconImage {
@@ -173,4 +175,3 @@ Item {
         } // Repeater
     } // RowLayout
 } // Item
-
