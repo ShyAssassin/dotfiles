@@ -3,10 +3,10 @@
   lib, libGL,
   appimageTools,
 }: let
-  version = "1.22.2";
+  version = "1.22.6";
   pname = "sable-bin";
   src = fetchurl {
-    hash = "sha256-yqbCJUBetGr7HP/rC9vDIbXfA8mE8Nrtki+FUsa0Dhk=";
+    hash = "sha256-DFZZrdwSF/jrlrRQ9gWguDe7AOQVMablEUcD1l3Giic=";
     url = "https://github.com/SableClient/Sable/releases/download/v${version}/Sable-${version}-linux-x86_64.AppImage";
   };
   appimageContents = appimageTools.extract {
