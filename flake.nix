@@ -22,8 +22,8 @@
     devnotify.url = "github:ShyAssassin/devnotify";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.56.2";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:hyprwm/Hyprland?rev=45c8510c9c52aee541ac2b31c2b716d61c526241";
     };
   };
 
@@ -59,7 +59,6 @@
         ];
 
         shellHook = ''
-          export EDITOR="nvim"
           export NIX_CONFIG="extra-experimental-features = nix-command flakes"
         '';
       };
@@ -84,6 +83,7 @@
 
           ./nixos/hosts/miyabi/miyabi.nix
           ./nixos/hosts/miyabi/miyabi-hw.nix
+          ./nixos/hosts/miyabi/services/syncthing.nix
 
           ./nixos/workspace/dev.nix
           ./nixos/workspace/gaming.nix
@@ -129,12 +129,10 @@
         modules = [
           ./nixos/common.nix
 
-          ./nixos/workspace/dev.nix
-          ./nixos/modules-old/grub.nix
-          ./nixos/modules-old/storage.nix
-
           ./nixos/hosts/satsuki/satsuki.nix
           ./nixos/hosts/satsuki/satsuki-hw.nix
+
+          ./nixos/hosts/satsuki/services/syncthing.nix
         ];
       };
     };
