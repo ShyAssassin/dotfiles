@@ -1,4 +1,4 @@
-{config, lib, pkgs, inputs, outputs, ...}: {
+{config, lib, pkgs, inputs, outputs, ...}: with lib; {
   nix.settings = {
     log-lines = "35";
     max-jobs = "auto";
@@ -9,21 +9,21 @@
   };
 
   nix.gc = {
-    dates = "daily";
     automatic = true;
+    dates = mkDefault "weekly";
     options = "--delete-older-than 7d";
   };
 
   imports = [
     ./users.nix
     ./asyncthing.nix
-  ] ++ (lib.mapAttrsToList
+  ] ++ (mapAttrsToList
     (name: module: "${./modules/${name}.nix}")
-    (lib.filterAttrs (_: v: v != null) outputs.nixosModules)
+    (filterAttrs (_: v: v != null) outputs.nixosModules)
   );
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = (lib.attrValues outputs.overlays or []) ++ [
+  nixpkgs.config.allowUnfree = mkDefault true;
+  nixpkgs.overlays = (attrValues outputs.overlays or []) ++ [
     (final: _prev: import ./overlay.nix { inherit final inputs; })
   ];
 }
