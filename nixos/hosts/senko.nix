@@ -11,11 +11,10 @@
   environment.systemPackages = with pkgs; [
     git
     btop
-    miru
+    nixd
     cmake
     kitty
     neovim
-    rustup
     neovim
     vscode
     vlc-bin
@@ -72,10 +71,20 @@
     };
   };
 
-  # nix.extraOptions = ''
-  #   extra-platforms = x86_64-darwin aarch64-darwin
-  # '';
-  # inputs.self.allowUnsupportedSystem = true;
-  # Enable alternative shell support in nix-darwin.
-  # programs.fish.enable = true;
+  # nixpkgs.overlays = [
+  #   (_final: prev: {
+  #     fish = prev.fish.overrideAttrs (_old: {
+  #       # Fix direnv tests see nixpkgs issue #50731
+  #       NIX_FORCE_LOCAL_REBUILD = "darwin-codesign-fix";
+  #     });
+  #     vesktop = prev.vesktop.overrideAttrs (old: {
+  #       # Fix code signing
+  #       postConfigure = "";
+  #       buildPhase = builtins.replaceStrings
+  #         [ "pnpm exec electron-builder" ]
+  #         [ "pnpm exec electron-builder -c.mac.identity=null" ]
+  #         old.buildPhase;
+  #     });
+  #   })
+  # ];
 }
