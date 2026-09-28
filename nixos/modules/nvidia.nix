@@ -13,9 +13,9 @@ in {
       description = "Enable CUDA support (increases build times)";
     };
     enableCudaCache = mkOption {
-      default = true;
+      default = false;
       type = types.bool;
-      description = "Enable cuda binary cache (download prebuilt binaries with cuda support)";
+      description = "Enable cuda binary cache (Sometimes very slow downloads)";
     };
   };
 
