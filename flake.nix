@@ -22,8 +22,8 @@
     devnotify.url = "github:ShyAssassin/devnotify";
 
     hyprland = {
+      url = "github:hyprwm/Hyprland?tag=v0.56.2";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      url = "github:hyprwm/Hyprland?rev=45c8510c9c52aee541ac2b31c2b716d61c526241";
     };
   };
 
