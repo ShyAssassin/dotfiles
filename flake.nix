@@ -34,16 +34,14 @@
     systems = [
       "x86_64-linux"
       "aarch64-linux"
-      "x86_64-darwin"
       "aarch64-darwin"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     nixosModules = import ./nixos/modules/default.nix;
-    overlays = import ./nixos/overlay.nix {inherit inputs outputs;};
+    overlays = import ./nixos/overlay.nix {inherit inputs;};
     packages = forAllSystems (system: import ./nixos/packages {
-      inherit inputs outputs;
-      pkgs = nixpkgs.legacyPackages.${system};
+      inherit inputs outputs; pkgs = nixpkgs.legacyPackages.${system};
     });
 
     devShells = forAllSystems (system: let
