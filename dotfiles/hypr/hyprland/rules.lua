@@ -62,6 +62,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    float = true,
+    no_anim = true,
+    no_focus = true,
+    no_shadow = true,
+    name = "ibus-candidate-window",
+    match = { class = "(?i)^(ibus-ui-gtk3)$" },
+})
+
+hl.window_rule({
     name = "yubico",
     pin = true,
     float = true,
@@ -76,6 +85,6 @@ hl.window_rule({
     pin = true,
     float = true,
     border_size = 0,
-    name = "ff-popout",
+    name = "firefox-picture-in-picture",
     match = { class = "(firefox)", title = "(Picture-in-Picture)" },
 })

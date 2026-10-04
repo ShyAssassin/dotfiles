@@ -1,3 +1,8 @@
+hl.env("XMODIFIERS", "@im=ibus")
+hl.env("QT_IM_MODULE", "wayland,ibus")
+hl.env("SDL_IM_MODULE", "wayland,ibus")
+hl.env("GTK_IM_MODULE", "wayland,ibus,xim")
+
 -- needed for nvidia
 hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
