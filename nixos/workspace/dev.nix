@@ -37,8 +37,8 @@
     git gh lazygit
     gdb lldb tracy nixd
     bat bat-extras.batman
-    vscode imhex zellij helix
     config.boot.kernelPackages.perf
+    unstable.vscode imhex zellij helix
     linux-manual man-pages man-pages-posix
   ];
 }
