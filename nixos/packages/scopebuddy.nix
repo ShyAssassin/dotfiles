@@ -2,6 +2,7 @@
   jq,
   lib,
   perl,
+  xwayland,
   gamescope,
   wlr-randr,
   stdenvNoCC,
@@ -10,14 +11,14 @@
 }:
 
 stdenvNoCC.mkDerivation rec {
-  version = "1.4.0";
+  version = "1.5.0";
   pname = "scopebuddy";
 
   src = fetchFromGitHub {
     rev = version;
     repo = "ScopeBuddy";
     owner = "OpenGamingCollective";
-    hash = "sha256-1n1lZidbtDV9Lm8QKd1s35bOS6Uh8sI3KtBJZ+FwdxQ=";
+    hash = "sha256-Z4KE6Qs5dcNdoEra1sx69I8EsxztAeVNGgO0ltYz7r0=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
@@ -31,8 +32,11 @@ stdenvNoCC.mkDerivation rec {
       --prefix PATH : ${lib.makeBinPath [
         jq
         perl
-        gamescope
+        xwayland
         wlr-randr
+      ]} \
+      --suffix PATH : ${lib.makeBinPath [
+        gamescope
       ]}
 
     runHook postInstall

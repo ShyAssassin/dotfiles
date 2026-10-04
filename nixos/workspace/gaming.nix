@@ -31,6 +31,6 @@
   };
 
   hardware.steam-hardware.enable = true;
-  environment.systemPackages = with pkgs.unstable; [ mangohud protonplus scopebuddy wayvr ];
+  environment.systemPackages = with pkgs.unstable; [ mangohud protonplus wayvr ] ++ [ pkgs.scopebuddy ];
   environment.sessionVariables = { STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\\\${HOME}/.steam/root/compatibilitytools.d"; };
 }
