@@ -1,0 +1,2 @@
+singleton Time 1.0 Time.qml
+singleton DeviceInfo 1.0 DeviceInfo.qml
