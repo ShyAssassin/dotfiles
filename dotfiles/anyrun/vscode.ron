@@ -1,8 +1,0 @@
-Config(
-    prefix: "?",
-    max_entries: 3,
-    icon: "vscode",
-    command: "code",
-    show_empty: true,
-    path: "~/.config/Code",
-)
