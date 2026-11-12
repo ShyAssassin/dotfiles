@@ -22,7 +22,7 @@
     devnotify.url = "github:ShyAssassin/devnotify";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?tag=v0.57.0";
+      url = "github:hyprwm/Hyprland?tag=v0.57.2";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
